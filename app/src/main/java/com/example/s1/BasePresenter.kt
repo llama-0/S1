@@ -1,5 +1,7 @@
 package com.example.s1
 
+import android.util.Log
+
 interface BasePresenter {
-    fun start() = println("initialize in interface itself, kotlin does this")
+    fun start() = Log.d("BasePresenter", "presenter started")
 }

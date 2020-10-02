@@ -7,4 +7,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="btnStyle">
+        <item name="android:layout_margin">@dimen/btn_margin</item>
+        <item name="android:text">@string/show_name</item>
+        <item name="android:textSize">@dimen/btn_text_size</item>
+    </style>
+
+    <style name="edStyle">
+        <item name="android:layout_marginStart">@dimen/ed_margin_start</item>
+        <item name="android:layout_marginEnd">@dimen/ed_margin_end</item>
+    </style>
+
 </resources>
