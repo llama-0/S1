@@ -1,7 +1,6 @@
 package com.example.s1
 
 import MainPresenter
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +14,6 @@ class MainActivity : AppCompatActivity(), ContractMain.View {
 
     companion object {
         private const val PREFERENCES_TAG = "PREFERENCES_KEY"
-        private const val INPUT_KEY = "INPUT_KEY"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +29,9 @@ class MainActivity : AppCompatActivity(), ContractMain.View {
         }
     }
 
-    override fun showMessage() { // unused parameter, all code still in Activity
-        Snackbar.make(currentFocus?.rootView!!,
+    override fun showMessage() {
+        Snackbar.make(
+            currentFocus?.rootView!!,
             if (editText.text.isNotEmpty()) editText.text else "Please enter your name",
             Snackbar.LENGTH_LONG).show()
     }
@@ -41,28 +40,16 @@ class MainActivity : AppCompatActivity(), ContractMain.View {
         editText.setText(text)
     }
 
-    override fun saveText(prefs: SharedPreferences) {
-        prefs.edit().putString(INPUT_KEY, editText.text.toString()).apply()
-    }
-
-    override fun retrieveText(): String? = sharedPreferences!!.getString(INPUT_KEY, null)
-
     override fun onPause() {
         super.onPause()
         Log.i("MainActivity","onPause called")
-        saveText(sharedPreferences!!)
+        presenter.saveText(sharedPreferences!!, editText.text.toString())
     }
 
     override fun onResume() {
         super.onResume()
         Log.i("MainActivity","onResume called")
-        val str = retrieveText()
-        if (str.isNullOrEmpty()) {
-            Log.i("MainActivity", "Str is empty or null")
-        } else {
-            setText(str)
-//            presenter.updateText(str) // does nothing
-        }
+        presenter.retrieveText(sharedPreferences!!)?.let { setText(it) }
     }
 
     override fun onDestroy() {
@@ -70,5 +57,5 @@ class MainActivity : AppCompatActivity(), ContractMain.View {
         Log.i("MainActivity","onDestroy called")
     }
 
-    override var presenter: ContractMain.Presenter = MainPresenter(this)
+    override var presenter: ContractMain.Presenter = MainPresenter()
 }

@@ -1,9 +1,16 @@
+import android.content.SharedPreferences
 import com.example.s1.ContractMain
 
-class MainPresenter(private val view: ContractMain.View) : ContractMain.Presenter {
+class MainPresenter : ContractMain.Presenter {
 
-//    override fun updateText(text: String) {
-//        view.setText(text)
-//    }
+    companion object {
+        private const val INPUT_KEY = "INPUT_KEY"
+    }
 
+    override fun saveText(prefs: SharedPreferences, text: String) {
+        prefs.edit().putString(INPUT_KEY,  text).apply()
+    }
+
+    override fun retrieveText(prefs: SharedPreferences): String? =
+        prefs.getString(INPUT_KEY, null)
 }

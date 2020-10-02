@@ -7,10 +7,10 @@ interface ContractMain {
     interface View : BaseView<Presenter> {
         fun showMessage()
         fun setText(text: String)
-        fun saveText(prefs: SharedPreferences)
-        fun retrieveText(): String?
     }
 
     interface Presenter : BasePresenter {
+        fun saveText(prefs: SharedPreferences, text: String)
+        fun retrieveText(prefs: SharedPreferences): String?
     }
 }
