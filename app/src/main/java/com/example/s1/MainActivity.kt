@@ -27,11 +27,11 @@ class MainActivity : AppCompatActivity(), ContractMain.View {
         presenter.start()
 
         button.setOnClickListener {
-            showMessage(editText.text.toString())
+            showMessage()
         }
     }
 
-    override fun showMessage(message: String) { // unused parameter, all code still in Activity
+    override fun showMessage() { // unused parameter, all code still in Activity
         Snackbar.make(currentFocus?.rootView!!,
             if (editText.text.isNotEmpty()) editText.text else "Please enter your name",
             Snackbar.LENGTH_LONG).show()
@@ -41,17 +41,22 @@ class MainActivity : AppCompatActivity(), ContractMain.View {
         editText.setText(text)
     }
 
+    override fun saveText(prefs: SharedPreferences) {
+        prefs.edit().putString(INPUT_KEY, editText.text.toString()).apply()
+    }
+
+    override fun retrieveText(): String? = sharedPreferences!!.getString(INPUT_KEY, null)
+
     override fun onPause() {
         super.onPause()
         Log.i("MainActivity","onPause called")
-        sharedPreferences = getSharedPreferences(PREFERENCES_TAG, 0)
-        sharedPreferences!!.edit().putString(INPUT_KEY, editText.text.toString()).apply()
+        saveText(sharedPreferences!!)
     }
 
     override fun onResume() {
         super.onResume()
         Log.i("MainActivity","onResume called")
-        val str = sharedPreferences!!.getString(INPUT_KEY, null)
+        val str = retrieveText()
         if (str.isNullOrEmpty()) {
             Log.i("MainActivity", "Str is empty or null")
         } else {
