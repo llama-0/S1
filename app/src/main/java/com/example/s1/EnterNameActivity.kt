@@ -20,11 +20,15 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
 
         sharedPreferences = getSharedPreferences(PREFERENCES_TAG, 0)
         input = Model(sharedPreferences)
-        presenter = EnterNamePresenter(this)
+        presenter = EnterNamePresenter(this, input)
         presenter?.start()
 
+        initClickListeners()
+    }
+
+    private fun initClickListeners() {
         btn.setOnClickListener {
-            presenter?.onShowNameButtonClicked(input, edEnterName.text.toString())
+            presenter?.onShowNameButtonClicked(edEnterName.text.toString())
         }
     }
 
@@ -38,14 +42,14 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
             Snackbar.LENGTH_LONG).show()
     }
 
-    override fun setText(text: String) {
+    override fun showText(text: String) {
         edEnterName.setText(text)
     }
 
     override fun onResume() {
         super.onResume()
         Log.i("EnterNameActivity","onResume called")
-        presenter?.retrieveText(input)?.let { setText(it) }
+        presenter?.retrieveText()?.let { showText(it) }
     }
 
     companion object {

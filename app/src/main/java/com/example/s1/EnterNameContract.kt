@@ -4,11 +4,12 @@ interface EnterNameContract {
 
     interface View : BaseView<Presenter?> {
         fun showMessage()
-        fun setText(text: String)
+        fun showText(text: String)
     }
 
     interface Presenter : BasePresenter {
-        fun onShowNameButtonClicked(input: Model?, text: String)
-        fun retrieveText(input: Model?): String?
+        fun onShowNameButtonClicked(text: String)
+        fun retrieveText(): String?
+        fun saveText(text: String)
     }
 }
