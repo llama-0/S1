@@ -20,12 +20,11 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
 
         sharedPreferences = getSharedPreferences(PREFERENCES_TAG, 0)
         input = Model(sharedPreferences)
-        presenter = EnterNamePresenter()
+        presenter = EnterNamePresenter(this)
         presenter?.start()
 
         btn.setOnClickListener {
-            showMessage()
-            presenter?.saveText(input, edEnterName.text.toString())
+            presenter?.onShowNameButtonClicked(input, edEnterName.text.toString())
         }
     }
 

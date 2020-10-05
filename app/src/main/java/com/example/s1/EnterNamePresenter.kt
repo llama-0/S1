@@ -1,10 +1,11 @@
 import com.example.s1.EnterNameContract
 import com.example.s1.Model
 
-class EnterNamePresenter : EnterNameContract.Presenter {
+class EnterNamePresenter(private val view: EnterNameContract.View) : EnterNameContract.Presenter {
 
-    override fun saveText(input: Model?, text: String) {
+    override fun onShowNameButtonClicked(input: Model?, text: String) {
         input?.prefs?.edit()?.putString(INPUT_KEY,  text)?.apply()
+        view.showMessage()
     }
 
     override fun retrieveText(input: Model?): String? =

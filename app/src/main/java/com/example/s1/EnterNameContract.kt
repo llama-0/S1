@@ -8,7 +8,7 @@ interface EnterNameContract {
     }
 
     interface Presenter : BasePresenter {
-        fun saveText(input: Model?, text: String)
+        fun onShowNameButtonClicked(input: Model?, text: String)
         fun retrieveText(input: Model?): String?
     }
 }
