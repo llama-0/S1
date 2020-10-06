@@ -11,12 +11,13 @@ class EnterNamePresenter(
         view.showMessage()
     }
 
-    override fun retrieveText(): String? =
-        model?.prefs?.getString(INPUT_KEY, null)
+    override fun retrieveText() {
+        val text = model?.prefs?.getString(INPUT_KEY, null)
+        text?.let { view.showText(it) }
+    }
 
     override fun saveText(text: String) {
         model?.prefs?.edit()?.putString(INPUT_KEY,  text)?.apply()
-        view.showText(text)
     }
 
     companion object {

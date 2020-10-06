@@ -9,7 +9,7 @@ interface EnterNameContract {
 
     interface Presenter : BasePresenter {
         fun onShowNameButtonClicked(text: String)
-        fun retrieveText(): String?
+        fun retrieveText()
         fun saveText(text: String)
     }
 }

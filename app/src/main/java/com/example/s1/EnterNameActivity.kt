@@ -49,7 +49,7 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
     override fun onResume() {
         super.onResume()
         Log.i("EnterNameActivity","onResume called")
-        presenter?.retrieveText()?.let { showText(it) }
+        presenter?.retrieveText()
     }
 
     companion object {
