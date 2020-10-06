@@ -7,5 +7,6 @@ import android.util.Log
  * May come useful for future scalability, now redundant.
  */
 interface BasePresenter {
-    fun start() = Log.d("BasePresenter", "presenter started")
+    fun start() =
+        Log.d("BasePresenter", "presenter started")
 }

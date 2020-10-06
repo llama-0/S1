@@ -1,6 +1,5 @@
 package com.example.s1
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -23,28 +22,24 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
         val model = Model(sharedPreferences)
         presenter = EnterNamePresenter(this, model)
         presenter?.start()
-        presenter?.retrieveName()
+        presenter?.onViewCreated()
     }
 
     private fun initClickListeners() {
-        btn.setOnClickListener {
+        btnShowGreetings.setOnClickListener {
             presenter?.onShowNameButtonClicked(edEnterName.text.toString())
         }
     }
 
-    override fun showGreetings() {
+    override fun showGreetings(message: String) {
         Snackbar.make(
             findViewById(R.id.content_main),
-            if (edEnterName.text.isNotEmpty())
-                "Hello, ${edEnterName.text}!"
-            else
-                getString(R.string.default_message),
+            message,
             Snackbar.LENGTH_LONG).show()
     }
 
-    override fun showName(name: String) {
+    override fun showName(name: String) =
         edEnterName.setText(name)
-    }
 
     companion object {
         private const val PREFERENCES_TAG = "PREFERENCES_KEY"

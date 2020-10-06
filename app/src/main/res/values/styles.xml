@@ -8,7 +8,7 @@
     </style>
 
     <style name="btnStyle">
-        <item name="android:text">@string/show_name</item>
+        <item name="android:text">@string/show_greetings</item>
         <item name="android:textSize">@dimen/btn_text_size</item>
     </style>
 
