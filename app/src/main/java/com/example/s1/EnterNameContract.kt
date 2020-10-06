@@ -3,13 +3,13 @@ package com.example.s1
 interface EnterNameContract {
 
     interface View : BaseView<Presenter?> {
-        fun showMessage()
-        fun showText(text: String)
+        fun showGreetings()
+        fun showName(name: String)
     }
 
     interface Presenter : BasePresenter {
-        fun onShowNameButtonClicked(text: String)
-        fun retrieveText()
-        fun saveText(text: String)
+        fun saveName(name: String)
+        fun retrieveName()
+        fun onShowNameButtonClicked(name: String)
     }
 }

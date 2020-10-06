@@ -1,29 +1,29 @@
 package com.example.s1
 
-import EnterNamePresenter
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.content_main.*
 
 class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
 
-    private var sharedPreferences: SharedPreferences? = null
-    private var input: Model? = null
     override var presenter: EnterNameContract.Presenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        sharedPreferences = getSharedPreferences(PREFERENCES_TAG, 0)
-        input = Model(sharedPreferences)
-        presenter = EnterNamePresenter(this, input)
-        presenter?.start()
-
+        initPresenter()
         initClickListeners()
+    }
+
+    private fun initPresenter() {
+        val sharedPreferences = getSharedPreferences(PREFERENCES_TAG, 0)
+        val model = Model(sharedPreferences)
+        presenter = EnterNamePresenter(this, model)
+        presenter?.start()
+        presenter?.retrieveName()
     }
 
     private fun initClickListeners() {
@@ -32,7 +32,7 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
         }
     }
 
-    override fun showMessage() {
+    override fun showGreetings() {
         Snackbar.make(
             findViewById(R.id.content_main),
             if (edEnterName.text.isNotEmpty())
@@ -42,14 +42,8 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
             Snackbar.LENGTH_LONG).show()
     }
 
-    override fun showText(text: String) {
-        edEnterName.setText(text)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.i("EnterNameActivity","onResume called")
-        presenter?.retrieveText()
+    override fun showName(name: String) {
+        edEnterName.setText(name)
     }
 
     companion object {
