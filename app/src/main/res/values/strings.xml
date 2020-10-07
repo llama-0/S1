@@ -3,4 +3,5 @@
     <string name="enter_your_name">Enter your name</string>
     <string name="show_greetings">Show Greetings</string>
     <string name="default_message">Please enter your name</string>
+    <string name="hello">Hello</string>
 </resources>

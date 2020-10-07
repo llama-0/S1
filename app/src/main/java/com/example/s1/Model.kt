@@ -11,7 +11,7 @@ data class Model(val prefs: SharedPreferences) {
         prefs.getString(NAME_KEY, null) ?: DEFAULT_NAME
 
     companion object {
-        private const val NAME_KEY = "NAME_KEY"
+        internal const val NAME_KEY = "NAME_KEY"
         private const val DEFAULT_NAME = "default_name"
     }
 }

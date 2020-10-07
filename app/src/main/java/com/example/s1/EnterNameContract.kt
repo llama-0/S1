@@ -3,7 +3,7 @@ package com.example.s1
 interface EnterNameContract {
 
     interface View : BaseView<Presenter?> {
-        fun showGreetings(message: String)
+        fun showMessage(message: String)
         fun showName(name: String)
     }
 
@@ -12,4 +12,5 @@ interface EnterNameContract {
         fun onViewCreated()
         fun onShowNameButtonClicked(name: String)
     }
+
 }

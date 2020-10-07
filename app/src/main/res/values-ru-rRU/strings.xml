@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">S1</string>
+    <string name="enter_your_name">Введите своё имя</string>
+    <string name="show_greetings">Покажи приветствие</string>
+    <string name="default_message">Пожалуйста, введите своё имя</string>
+    <string name="hello">Привет</string>
+</resources>

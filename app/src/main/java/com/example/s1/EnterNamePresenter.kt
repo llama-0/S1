@@ -1,8 +1,7 @@
 package com.example.s1
 
 import android.content.res.Resources
-import android.provider.Settings.Global.getString
-import kotlinx.android.synthetic.main.content_main.*
+import android.util.Log
 
 class EnterNamePresenter(
     private val view: EnterNameContract.View,
@@ -18,11 +17,10 @@ class EnterNamePresenter(
 
     override fun onShowNameButtonClicked(name: String) {
         saveName(name)
-        val message =
-            if (name.isNotEmpty())
-                "Hello, $name!"
-            else
-                resources.getString(R.string.default_message)
-        view.showGreetings(message)
+        if (name.isEmpty()) {
+            view.showMessage(resources.getString(R.string.default_message))
+        } else {
+            Log.i("EnterNamePresenter", "open second activity or show it")
+        }
     }
 }

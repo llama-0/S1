@@ -18,9 +18,7 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
     }
 
     private fun initPresenter() {
-        val sharedPreferences = getSharedPreferences(PREFERENCES_TAG, 0)
-        val model = Model(sharedPreferences)
-        presenter = EnterNamePresenter(this, model, resources)
+        presenter = EnterNamePresenter(this, AppSingleton().model, resources)
         presenter?.start()
         presenter?.onViewCreated()
     }
@@ -31,7 +29,7 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
         }
     }
 
-    override fun showGreetings(message: String) {
+    override fun showMessage(message: String) {
         Snackbar.make(
             findViewById(R.id.content_main),
             message,
@@ -41,7 +39,4 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
     override fun showName(name: String) =
         edEnterName.setText(name)
 
-    companion object {
-        private const val PREFERENCES_TAG = "PREFERENCES_KEY"
-    }
 }
