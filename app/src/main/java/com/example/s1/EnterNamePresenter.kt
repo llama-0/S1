@@ -6,7 +6,8 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class EnterNamePresenter(
     private val view: EnterNameContract.View,
-    private val model: Model
+    private val model: Model,
+    private val resources: Resources
 ) : EnterNameContract.Presenter {
 
     override fun saveName(name: String) =
@@ -17,11 +18,11 @@ class EnterNamePresenter(
 
     override fun onShowNameButtonClicked(name: String) {
         saveName(name)
-        val message = if (name.isNotEmpty()) "Hello, $name!" else DEFAULT_MESSAGE
+        val message =
+            if (name.isNotEmpty())
+                "Hello, $name!"
+            else
+                resources.getString(R.string.default_message)
         view.showGreetings(message)
-    }
-
-    companion object {
-        private const val DEFAULT_MESSAGE = "Please enter your name"
     }
 }

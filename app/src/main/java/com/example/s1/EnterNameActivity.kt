@@ -20,7 +20,7 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
     private fun initPresenter() {
         val sharedPreferences = getSharedPreferences(PREFERENCES_TAG, 0)
         val model = Model(sharedPreferences)
-        presenter = EnterNamePresenter(this, model)
+        presenter = EnterNamePresenter(this, model, resources)
         presenter?.start()
         presenter?.onViewCreated()
     }
