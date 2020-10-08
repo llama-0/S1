@@ -20,7 +20,7 @@ class EnterNamePresenter(
         if (name.isEmpty()) {
             view.showMessage(resources.getString(R.string.default_message))
         } else {
-            Log.i("EnterNamePresenter", "open second activity or show it")
+            view.showGreetingsActivity()
         }
     }
 }

@@ -7,6 +7,8 @@ interface GreetingsContract {
     }
 
     interface Presenter : BasePresenter {
+        fun composeMessage(): String
+        fun onViewCreated()
     }
 
 }

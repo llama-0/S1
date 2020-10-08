@@ -1,5 +1,6 @@
 package com.example.s1
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -38,5 +39,10 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
 
     override fun showName(name: String) =
         edEnterName.setText(name)
+
+    override fun showGreetingsActivity() {
+        val intent = Intent(this, GreetingsActivity::class.java)
+        startActivity(intent)
+    }
 
 }

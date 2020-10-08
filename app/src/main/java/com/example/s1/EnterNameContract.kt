@@ -5,6 +5,7 @@ interface EnterNameContract {
     interface View : BaseView<Presenter?> {
         fun showMessage(message: String)
         fun showName(name: String)
+        fun showGreetingsActivity()
     }
 
     interface Presenter : BasePresenter {

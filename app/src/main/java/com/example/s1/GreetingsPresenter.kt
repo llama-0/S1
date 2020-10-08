@@ -1,11 +1,6 @@
 package com.example.s1
 
-import android.content.Intent
 import android.content.res.Resources
-import android.provider.Settings.Global.getString
-import android.util.Log
-import androidx.core.content.ContextCompat.startActivity
-import kotlinx.android.synthetic.main.content_main.*
 
 class GreetingsPresenter(
     private val view: GreetingsContract.View,
@@ -13,5 +8,10 @@ class GreetingsPresenter(
     private val resources: Resources
 ) : GreetingsContract.Presenter {
 
+    override fun composeMessage() =
+        resources.getString(R.string.hello) + ", " + model.getName() + "!"
 
+    override fun onViewCreated() {
+        view.showGreetings(composeMessage())
+    }
 }
