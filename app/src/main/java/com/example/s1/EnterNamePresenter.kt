@@ -1,7 +1,6 @@
 package com.example.s1
 
 import android.content.res.Resources
-import android.util.Log
 
 class EnterNamePresenter(
     private val view: EnterNameContract.View,

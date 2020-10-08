@@ -19,7 +19,7 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
     }
 
     private fun initPresenter() {
-        presenter = EnterNamePresenter(this, AppSingleton.model, resources)
+        presenter = EnterNamePresenter(this, (application as AppSingleton).model, resources)
         presenter?.start()
         presenter?.onViewCreated()
     }
