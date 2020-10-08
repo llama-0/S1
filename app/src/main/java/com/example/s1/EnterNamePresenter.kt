@@ -8,7 +8,7 @@ class EnterNamePresenter(
     private val resources: Resources
 ) : EnterNameContract.Presenter {
 
-    override fun saveName(name: String) =
+    private fun saveName(name: String) =
         model.setName(name)
 
     override fun onViewCreated() =

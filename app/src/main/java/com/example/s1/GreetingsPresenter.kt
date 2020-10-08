@@ -8,7 +8,7 @@ class GreetingsPresenter(
     private val resources: Resources
 ) : GreetingsContract.Presenter {
 
-    override fun composeMessage() =
+    private fun composeMessage() =
         resources.getString(R.string.hello) + ", " + model.getName() + "!"
 
     override fun onViewCreated() {

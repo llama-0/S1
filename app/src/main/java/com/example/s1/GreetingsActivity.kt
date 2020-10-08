@@ -16,7 +16,8 @@ class GreetingsActivity : AppCompatActivity(), GreetingsContract.View {
     }
 
     private fun initPresenter() {
-        presenter = GreetingsPresenter(this, (application as AppSingleton).model, resources)
+        presenter =
+            (application as AppSingleton).model?.let { GreetingsPresenter(this, it, resources) }
         presenter?.start()
         presenter?.onViewCreated()
     }

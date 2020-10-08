@@ -4,7 +4,7 @@ import android.app.Application
 
 class AppSingleton : Application() {
 
-    lateinit var model: Model
+    internal var model: Model? = null
 
     override fun onCreate() {
         super.onCreate()

@@ -9,7 +9,6 @@ interface EnterNameContract {
     }
 
     interface Presenter : BasePresenter {
-        fun saveName(name: String): Unit?
         fun onViewCreated()
         fun onShowNameButtonClicked(name: String)
     }
