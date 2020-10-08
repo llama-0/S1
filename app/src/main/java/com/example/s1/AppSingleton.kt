@@ -4,8 +4,6 @@ import android.app.Application
 
 class AppSingleton : Application() {
 
-    lateinit var model: Model
-
     override fun onCreate() {
         super.onCreate()
         val sharedPreferences = getSharedPreferences(PREFERENCES_TAG, 0)
@@ -14,5 +12,6 @@ class AppSingleton : Application() {
 
     companion object {
         private const val PREFERENCES_TAG = "PREFERENCES_KEY"
+        lateinit var model: Model
     }
 }
