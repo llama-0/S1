@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">S1</string>
+    <string name="app_name">SimpleMVP</string>
     <string name="enter_your_name">Enter your name</string>
-    <string name="show_greetings">Show Greetings</string>
+    <string name="show_greetings">Say Hello</string>
     <string name="default_message">Please enter your name</string>
     <string name="hello">Hello</string>
 </resources>

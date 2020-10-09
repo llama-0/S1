@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".GreetingsActivity"
-    android:id="@+id/content_greetings">
+    tools:context=".second_screen.ResponseActivity"
+    android:id="@+id/activityHello">
 
 
     <TextView
-        android:id="@+id/tvGreetings"
+        android:id="@+id/tvHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

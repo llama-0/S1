@@ -1,4 +1,4 @@
-package com.example.s1
+package com.`llama-0`.simplemvp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

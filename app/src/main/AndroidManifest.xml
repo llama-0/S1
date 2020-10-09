@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.s1">
+    package="com.llama.simplemvp">
 
     <application
-        android:name=".AppSingleton"
+        android:name="com.llama.simplemvp.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GreetingsActivity" />
-        <activity android:name=".EnterNameActivity">
+        <activity android:name="com.llama.simplemvp.second_screen.ResponseActivity" />
+        <activity android:name="com.llama.simplemvp.first_screen.EnterNameActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
