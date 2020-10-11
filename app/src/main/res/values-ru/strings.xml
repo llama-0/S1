@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">SimpleMVP</string>
     <string name="enter_your_name">Введите своё имя</string>
-    <string name="show_greetings">Покажи приветствие</string>
+    <string name="say_hello">Покажи приветствие</string>
     <string name="default_message">Пожалуйста, введите своё имя</string>
-    <string name="hello">Привет</string>
+    <string name="hello">Привет, %1$s!</string>
 </resources>

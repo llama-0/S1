@@ -30,12 +30,11 @@ class EnterNamePresenter(
         }
     }
 
-//    override fun onShowNameButtonClicked(name: String) {
-//        saveName(name)
-//        if (name.isEmpty()) {
-//            view.showMessage(resources.getString(R.string.default_message))
-//        } else {
-//            view.showGreetingsActivity()
-//        }
-//    }
+    override fun onRadioButtonChecked(color: Int) {
+        model.setColor(color)
+    }
+
+    override fun putRadioGroupResult(): Int =
+        model.getColor()
+
 }

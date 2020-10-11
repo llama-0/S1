@@ -5,11 +5,12 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".second_screen.ResponseActivity"
-    android:id="@+id/activityHello">
+    android:id="@+id/activityResponse">
 
 
     <TextView
         android:id="@+id/tvHello"
+        style="@style/tvHelloStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

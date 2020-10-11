@@ -1,15 +1,20 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="btnStyle">
-        <item name="android:text">@string/show_greetings</item>
+    <style name="btnSayHelloStyle">
+        <item name="android:text">@string/say_hello</item>
         <item name="android:textSize">@dimen/btn_text_size</item>
+    </style>
+
+    <style name="tvHelloStyle">
+        <item name="android:textColor">@color/colorLight</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

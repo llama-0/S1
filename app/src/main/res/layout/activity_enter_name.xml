@@ -7,28 +7,63 @@
     tools:context=".first_screen.EnterNameActivity"
     android:id="@+id/activityEnterName">
 
-    <EditText
-        android:id="@+id/edEnterName"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEnterName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/enter_your_name"
+        app:endIconMode="clear_text"
         android:layout_marginStart="@dimen/ed_margin_start"
         android:layout_marginEnd="@dimen/ed_margin_end"
-        android:importantForAutofill="no"
-        android:hint="@string/enter_your_name"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edEnterName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnShowResponse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/btn_margin"
-        style="@style/btnStyle"
-        app:layout_constraintEnd_toEndOf="@+id/edEnterName"
-        app:layout_constraintStart_toStartOf="@+id/edEnterName"
-        app:layout_constraintTop_toBottomOf="@+id/edEnterName" />
+        style="@style/btnSayHelloStyle"
+        app:layout_constraintEnd_toEndOf="@+id/tilEnterName"
+        app:layout_constraintStart_toStartOf="@+id/tilEnterName"
+        app:layout_constraintTop_toBottomOf="@+id/tilEnterName" />
+
+    <RadioGroup
+        android:id="@+id/rgTextViewBackgroundColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tilEnterName"
+        app:layout_constraintEnd_toEndOf="@+id/tilEnterName"
+        app:layout_constraintStart_toStartOf="@+id/tilEnterName"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <RadioButton
+            android:id="@+id/rbColorRed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/color_red" />
+
+        <RadioButton
+            android:id="@+id/rbColorGreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/color_green" />
+
+        <RadioButton
+            android:id="@+id/rbColorBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/color_blue" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

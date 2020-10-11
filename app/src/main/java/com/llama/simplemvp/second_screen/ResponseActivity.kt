@@ -1,5 +1,6 @@
 package com.llama.simplemvp.second_screen
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.llama.simplemvp.App
@@ -15,6 +16,8 @@ class ResponseActivity : AppCompatActivity(), ResponseContract.View {
         setContentView(R.layout.activity_response)
 
         initPresenter()
+        val color = intent.getIntExtra(STR_COLOR, Color.GRAY)
+        tvHello.setBackgroundColor(color)
     }
 
     private fun initPresenter() {
@@ -26,5 +29,9 @@ class ResponseActivity : AppCompatActivity(), ResponseContract.View {
 
     override fun showMessage(message: String) {
         tvHello.text = message
+    }
+
+    companion object {
+        private const val STR_COLOR = "STR_COLOR"
     }
 }

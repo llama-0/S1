@@ -10,8 +10,8 @@ class ResponsePresenter(
     private val resources: Resources
 ) : ResponseContract.Presenter {
 
-    private fun composeMessage() =
-        resources.getString(R.string.hello) + ", " + model.getName() + "!"
+    private fun composeMessage(): String =
+        resources.getString(R.string.hello, model.getName())
 
     override fun initView() {
         view.showMessage(composeMessage())

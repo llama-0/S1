@@ -1,9 +1,13 @@
 package com.llama.simplemvp.first_screen
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
+import android.view.View
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.llama.simplemvp.App
@@ -20,6 +24,7 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
         setContentView(R.layout.activity_enter_name)
 
         initPresenter()
+        checkRadioButton()
         initListeners()
     }
 
@@ -30,6 +35,19 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
         presenter?.initView()
     }
 
+    private fun checkRadioButton() {
+        rgTextViewBackgroundColor.setOnCheckedChangeListener { radioGroup, radioButtonId ->
+            presenter?.onRadioButtonChecked(
+                when (radioGroup.findViewById<RadioButton>(radioButtonId)) {
+                    rbColorRed -> Color.RED
+                    rbColorGreen -> Color.GREEN
+                    rbColorBlue -> Color.BLUE
+                    else -> Color.GRAY
+                }
+            )
+        }
+    }
+
     private fun initListeners() {
         edEnterName.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -38,7 +56,14 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
             override fun afterTextChanged(p0: Editable?) {
                 presenter?.onNameChanged(p0.toString())
             }
-
+        })
+        edEnterName.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN) {
+                presenter?.onShowResponseButtonClicked()
+                return@OnKeyListener true
+            }
+            else
+                false
         })
         btnShowResponse.setOnClickListener {
             presenter?.onShowResponseButtonClicked()
@@ -57,7 +82,12 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
 
     override fun showResponseActivity() {
         val intent = Intent(this, ResponseActivity::class.java)
+        intent.putExtra(STR_COLOR, presenter?.putRadioGroupResult())
         startActivity(intent)
+    }
+
+    companion object {
+        private const val STR_COLOR = "STR_COLOR"
     }
 
 }
