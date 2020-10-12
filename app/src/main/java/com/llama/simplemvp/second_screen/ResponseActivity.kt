@@ -16,8 +16,7 @@ class ResponseActivity : AppCompatActivity(), ResponseContract.View {
         setContentView(R.layout.activity_response)
 
         initPresenter()
-        val color = intent.getIntExtra(STR_COLOR, Color.GRAY)
-        tvHello.setBackgroundColor(color)
+        tvHello.setBackgroundColor(intent.getIntExtra(STR_COLOR, Color.GRAY))
     }
 
     private fun initPresenter() {
