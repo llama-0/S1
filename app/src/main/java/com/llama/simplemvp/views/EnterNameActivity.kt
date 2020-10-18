@@ -24,7 +24,7 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
         setContentView(R.layout.activity_enter_name)
 
         initPresenter()
-        checkRadioButton()
+        initRadioGroupView()
         initListeners()
     }
 
@@ -35,7 +35,17 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
         presenter?.initView()
     }
 
-    private fun checkRadioButton() {
+    private fun initRadioGroupView() {
+        val id: Int = when(presenter?.putRadioGroupResult()) {
+            Color.RED -> rbColorRed.id
+            Color.GREEN -> rbColorGreen.id
+            Color.BLUE -> rbColorBlue.id
+            else -> -1
+        }
+        rgTextViewBackgroundColor.check(id)
+    }
+
+    private fun initListeners() {
         rgTextViewBackgroundColor.setOnCheckedChangeListener { radioGroup, radioButtonId ->
             presenter?.onRadioButtonChecked(
                 when (radioGroup.findViewById<RadioButton>(radioButtonId)) {
@@ -46,9 +56,6 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
                 }
             )
         }
-    }
-
-    private fun initListeners() {
         edEnterName.addTextChangedListener(CustomTextWatcher(after = {
             presenter?.onNameChanged(it.toString())
         }))
