@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_enter_name.*
 
 class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
 
-    var presenter: EnterNameContract.Presenter? = null
+    private var presenter: EnterNameContract.Presenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
