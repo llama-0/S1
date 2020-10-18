@@ -1,16 +1,49 @@
 package com.llama.simplemvp.models
 
+import android.content.Context
 import android.content.SharedPreferences
+import android.content.SharedPreferences.Editor
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers.anyInt
+import org.mockito.ArgumentMatchers.anyString
+import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
+
 @RunWith(MockitoJUnitRunner::class)
 class ModelTest {
+
+
+    @Mock
+    var mockContext: Context? = null
+
+    @Mock
+    var mockPrefs: SharedPreferences? = null
+
+    @Mock
+    var mockEditor: Editor? = null
+
+    @Before
+    @Throws(Exception::class)
+    fun before() {
+        `when`<Any?>(mockContext?.getSharedPreferences(anyString(), anyInt())).thenReturn(mockPrefs)
+        `when`<Any?>(mockContext?.getSharedPreferences(anyString(), anyInt())?.edit()).thenReturn(
+            mockEditor
+        )
+        `when`(mockPrefs!!.getString("YOUR_KEY", null)).thenReturn("YOUR_VALUE")
+    }
+
+    @Test
+    fun anyTest() {
+        // Any shared preference you can call
+        // Assert.assertTrue();
+        val `val`: String = mockPrefs?.getString("YOUR_KEY", null) ?: "" // It returns YOUR_VALUE
+    }
 
 //    private lateinit var prefs: SharedPreferences
 //    private lateinit var model: Model
