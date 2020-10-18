@@ -1,18 +1,18 @@
-package com.llama.simplemvp.first_screen
+package com.llama.simplemvp.views
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.llama.simplemvp.App
+import com.llama.simplemvp.utils.CustomTextWatcher
 import com.llama.simplemvp.R
-import com.llama.simplemvp.second_screen.ResponseActivity
+import com.llama.simplemvp.contracts.EnterNameContract
+import com.llama.simplemvp.presenters.EnterNamePresenter
 import kotlinx.android.synthetic.main.activity_enter_name.*
 
 class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
@@ -49,14 +49,9 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
     }
 
     private fun initListeners() {
-        edEnterName.addTextChangedListener(object: TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun afterTextChanged(p0: Editable?) {
-                presenter?.onNameChanged(p0.toString())
-            }
-        })
+        edEnterName.addTextChangedListener(CustomTextWatcher(after = {
+            presenter?.onNameChanged(it.toString())
+        }))
         edEnterName.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN) {
                 presenter?.onShowResponseButtonClicked()
@@ -82,12 +77,12 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
 
     override fun showResponseActivity() {
         val intent = Intent(this, ResponseActivity::class.java)
-        intent.putExtra(STR_COLOR, presenter?.putRadioGroupResult())
+        val color: Int? = presenter?.putRadioGroupResult()
+        intent.putExtra(STR_COLOR, color)
         startActivity(intent)
     }
 
     companion object {
         private const val STR_COLOR = "STR_COLOR"
     }
-
 }

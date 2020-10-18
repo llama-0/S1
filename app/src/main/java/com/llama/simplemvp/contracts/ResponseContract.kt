@@ -1,7 +1,7 @@
-package com.llama.simplemvp.second_screen
+package com.llama.simplemvp.contracts
 
-import com.llama.simplemvp.base.BasePresenter
-import com.llama.simplemvp.base.BaseView
+import com.llama.simplemvp.presenters.BasePresenter
+import com.llama.simplemvp.views.BaseView
 
 interface ResponseContract {
 

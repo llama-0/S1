@@ -2,8 +2,7 @@ package com.llama.simplemvp
 
 import android.app.Application
 import android.content.SharedPreferences
-import android.widget.RadioGroup
-import com.llama.simplemvp.base.Model
+import com.llama.simplemvp.models.Model
 
 class App : Application() {
 

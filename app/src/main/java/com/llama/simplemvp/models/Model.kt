@@ -1,4 +1,4 @@
-package com.llama.simplemvp.base
+package com.llama.simplemvp.models
 
 import android.content.SharedPreferences
 

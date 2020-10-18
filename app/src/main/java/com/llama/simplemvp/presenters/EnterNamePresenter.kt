@@ -1,8 +1,9 @@
-package com.llama.simplemvp.first_screen
+package com.llama.simplemvp.presenters
 
 import android.content.res.Resources
-import com.llama.simplemvp.base.Model
+import com.llama.simplemvp.models.Model
 import com.llama.simplemvp.R
+import com.llama.simplemvp.contracts.EnterNameContract
 
 class EnterNamePresenter(
     private val view: EnterNameContract.View,

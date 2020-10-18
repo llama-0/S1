@@ -1,6 +1,4 @@
-package com.llama.simplemvp.base
-
-import android.util.Log
+package com.llama.simplemvp.presenters
 
 /**
  * BasePresenter is a part of an architecture skeleton.

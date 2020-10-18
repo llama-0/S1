@@ -1,10 +1,12 @@
-package com.llama.simplemvp.second_screen
+package com.llama.simplemvp.views
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.llama.simplemvp.App
 import com.llama.simplemvp.R
+import com.llama.simplemvp.contracts.ResponseContract
+import com.llama.simplemvp.presenters.ResponsePresenter
 import kotlinx.android.synthetic.main.activity_response.*
 
 class ResponseActivity : AppCompatActivity(), ResponseContract.View {
@@ -16,7 +18,8 @@ class ResponseActivity : AppCompatActivity(), ResponseContract.View {
         setContentView(R.layout.activity_response)
 
         initPresenter()
-        tvHello.setBackgroundColor(intent.getIntExtra(STR_COLOR, Color.GRAY))
+        val color = intent.getIntExtra(STR_COLOR, Color.GRAY)
+        tvHello.setBackgroundColor(color)
     }
 
     private fun initPresenter() {
