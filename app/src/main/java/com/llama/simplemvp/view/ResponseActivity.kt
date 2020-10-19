@@ -1,12 +1,12 @@
-package com.llama.simplemvp.views
+package com.llama.simplemvp.view
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.llama.simplemvp.App
 import com.llama.simplemvp.R
-import com.llama.simplemvp.contracts.ResponseContract
-import com.llama.simplemvp.presenters.ResponsePresenter
+import com.llama.simplemvp.contract.ResponseContract
+import com.llama.simplemvp.presenter.ResponsePresenter
 import kotlinx.android.synthetic.main.activity_response.*
 
 class ResponseActivity : AppCompatActivity(), ResponseContract.View {

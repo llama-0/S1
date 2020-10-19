@@ -1,9 +1,9 @@
-package com.llama.simplemvp.presenters
+package com.llama.simplemvp.presenter
 
 import android.content.res.Resources
-import com.llama.simplemvp.models.Model
+import com.llama.simplemvp.model.Model
 import com.llama.simplemvp.R
-import com.llama.simplemvp.contracts.ResponseContract
+import com.llama.simplemvp.contract.ResponseContract
 
 class ResponsePresenter(
     private val view: ResponseContract.View,

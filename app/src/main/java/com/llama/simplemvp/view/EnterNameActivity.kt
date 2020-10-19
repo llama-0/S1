@@ -1,18 +1,19 @@
-package com.llama.simplemvp.views
+package com.llama.simplemvp.view
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
 import android.view.KeyEvent
 import android.view.View
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.llama.simplemvp.App
-import com.llama.simplemvp.utils.CustomTextWatcher
+import com.llama.simplemvp.utils.SimpleTextWatcher
 import com.llama.simplemvp.R
-import com.llama.simplemvp.contracts.EnterNameContract
-import com.llama.simplemvp.presenters.EnterNamePresenter
+import com.llama.simplemvp.contract.EnterNameContract
+import com.llama.simplemvp.presenter.EnterNamePresenter
 import kotlinx.android.synthetic.main.activity_enter_name.*
 
 class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
@@ -56,9 +57,11 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
                 }
             )
         }
-        edEnterName.addTextChangedListener(CustomTextWatcher(after = {
-            presenter?.onNameChanged(it.toString())
-        }))
+        edEnterName.addTextChangedListener(object : SimpleTextWatcher() {
+            override fun afterTextChanged(p0: Editable?) {
+                presenter?.onNameChanged(p0.toString())
+            }
+        })
         edEnterName.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN) {
                 presenter?.onShowResponseButtonClicked()

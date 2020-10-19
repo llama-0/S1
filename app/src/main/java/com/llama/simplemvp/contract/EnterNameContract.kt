@@ -1,7 +1,7 @@
-package com.llama.simplemvp.contracts
+package com.llama.simplemvp.contract
 
-import com.llama.simplemvp.presenters.BasePresenter
-import com.llama.simplemvp.views.BaseView
+import com.llama.simplemvp.presenter.BasePresenter
+import com.llama.simplemvp.view.BaseView
 
 interface EnterNameContract {
 

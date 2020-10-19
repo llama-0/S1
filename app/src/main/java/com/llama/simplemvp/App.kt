@@ -2,7 +2,7 @@ package com.llama.simplemvp
 
 import android.app.Application
 import android.content.SharedPreferences
-import com.llama.simplemvp.models.Model
+import com.llama.simplemvp.model.Model
 
 class App : Application() {
 

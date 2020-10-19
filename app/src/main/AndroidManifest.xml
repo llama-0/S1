@@ -10,9 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.ResponseActivity"
-            android:parentActivityName=".views.EnterNameActivity"/>
-        <activity android:name=".views.EnterNameActivity">
+        <activity android:name=".view.ResponseActivity"
+            android:parentActivityName=".view.EnterNameActivity"/>
+        <activity android:name=".view.EnterNameActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.llama.simplemvp.presenters
+package com.llama.simplemvp.presenter
 
 /**
  * BasePresenter is a part of an architecture skeleton.

@@ -1,6 +1,5 @@
-package com.llama.simplemvp.models
+package com.llama.simplemvp.model
 
-import android.content.Context
 import android.content.SharedPreferences
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
@@ -9,10 +8,6 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.anyInt
-import org.mockito.ArgumentMatchers.anyString
-import org.mockito.Mockito
-import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 
