@@ -16,7 +16,7 @@ interface EnterNameContract {
         fun onShowResponseButtonClicked()
         fun onNameChanged(name: String)
         fun onRadioButtonChecked(color: Int)
-        fun putRadioGroupResult(): Int
+        fun getRadioGroupResult(): Int
     }
 
 }

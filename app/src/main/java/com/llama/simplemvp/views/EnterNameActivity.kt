@@ -36,7 +36,7 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
     }
 
     private fun initRadioGroupView() {
-        val id: Int = when(presenter?.putRadioGroupResult()) {
+        val id: Int = when(presenter?.getRadioGroupResult()) {
             Color.RED -> rbColorRed.id
             Color.GREEN -> rbColorGreen.id
             Color.BLUE -> rbColorBlue.id
@@ -84,7 +84,7 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
 
     override fun showResponseActivity() {
         val intent = Intent(this, ResponseActivity::class.java)
-        val color: Int? = presenter?.putRadioGroupResult()
+        val color: Int? = presenter?.getRadioGroupResult()
         intent.putExtra(STR_COLOR, color)
         startActivity(intent)
     }

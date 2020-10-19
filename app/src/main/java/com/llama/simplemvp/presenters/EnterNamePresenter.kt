@@ -35,7 +35,7 @@ class EnterNamePresenter(
         model.setColor(color)
     }
 
-    override fun putRadioGroupResult(): Int =
+    override fun getRadioGroupResult(): Int =
         model.getColor()
 
 }

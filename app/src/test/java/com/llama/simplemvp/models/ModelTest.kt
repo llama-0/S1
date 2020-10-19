@@ -2,28 +2,30 @@ package com.llama.simplemvp.models
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.SharedPreferences.Editor
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.ArgumentMatchers.anyString
-import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.Mockito.*
+import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 
 @RunWith(MockitoJUnitRunner::class)
 class ModelTest {
 
-    private val prefsMocked: SharedPreferences = mock(SharedPreferences::class.java)
+    private val prefsMocked: SharedPreferences = mock()
     private val model: Model = Model(prefsMocked)
 
     @Before
     fun before() {
 //        verify(prefsMocked).getString(PREF_STR_NAME_KEY, null)
+        whenever(model.setName(STR_NAME_VALUE_ANA)).thenReturn(any())
         Assert.assertNotNull(model)
     }
 
