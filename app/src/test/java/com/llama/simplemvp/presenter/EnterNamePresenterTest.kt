@@ -11,10 +11,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Test
 
 import org.junit.Assert.*
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner::class)
 class EnterNamePresenterTest {
 
     private val view: EnterNameContract.View = mock()
@@ -38,9 +35,10 @@ class EnterNamePresenterTest {
 
     @Test
     fun `onShowResponseButtonClicked name is Not empty`() {
+        assertNotNull(model.getName()) // null ...
         whenever(model.getName().isEmpty()).thenReturn(false)
         presenter.onShowResponseButtonClicked()
-        verify(view).showResponseActivity()
+        verify(view).showResponseActivity(model.getColor())
     }
 
     @Test
