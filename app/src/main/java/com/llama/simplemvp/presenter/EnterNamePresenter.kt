@@ -14,14 +14,16 @@ class EnterNamePresenter(
     private fun saveName(name: String) =
         model.setName(name)
 
-    override fun initView() =
+    override fun initView() {
         view.showName(model.getName())
+        view.showCheckedRadioButton(model.getColor())
+    }
 
     override fun onShowResponseButtonClicked() {
         if (model.getName().isEmpty()) {
             view.showMessage(resources.getString(R.string.default_message))
         } else {
-            view.showResponseActivity()
+            view.showResponseActivity(model.getColor())
         }
     }
 

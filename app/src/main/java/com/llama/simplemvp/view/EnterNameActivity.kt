@@ -25,7 +25,6 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
         setContentView(R.layout.activity_enter_name)
 
         initPresenter()
-        initRadioGroupView()
         initListeners()
     }
 
@@ -36,17 +35,13 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
         presenter?.initView()
     }
 
-    private fun initRadioGroupView() {
-        val id: Int = when(presenter?.getRadioGroupResult()) {
-            Color.RED -> rbColorRed.id
-            Color.GREEN -> rbColorGreen.id
-            Color.BLUE -> rbColorBlue.id
-            else -> -1
-        }
-        rgTextViewBackgroundColor.check(id)
+    private fun initListeners() {
+        rgListener()
+        edListener()
+        btnListener()
     }
 
-    private fun initListeners() {
+    private fun rgListener() {
         rgTextViewBackgroundColor.setOnCheckedChangeListener { radioGroup, radioButtonId ->
             presenter?.onRadioButtonChecked(
                 when (radioGroup.findViewById<RadioButton>(radioButtonId)) {
@@ -57,6 +52,9 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
                 }
             )
         }
+    }
+
+    private fun edListener() {
         edEnterName.addTextChangedListener(object : SimpleTextWatcher() {
             override fun afterTextChanged(p0: Editable?) {
                 presenter?.onNameChanged(p0.toString())
@@ -70,6 +68,9 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
             else
                 false
         })
+    }
+
+    private fun btnListener() {
         btnShowResponse.setOnClickListener {
             presenter?.onShowResponseButtonClicked()
         }
@@ -85,11 +86,21 @@ class EnterNameActivity : AppCompatActivity(), EnterNameContract.View {
     override fun showName(name: String) =
         edEnterName.setText(name)
 
-    override fun showResponseActivity() {
+    override fun showResponseActivity(color: Int) {
         val intent = Intent(this, ResponseActivity::class.java)
-        val color: Int? = presenter?.getRadioGroupResult()
         intent.putExtra(STR_COLOR, color)
         startActivity(intent)
+    }
+
+    override fun showCheckedRadioButton(color: Int) {
+        rgTextViewBackgroundColor.check(
+            when (color) {
+                Color.RED -> rbColorRed.id
+                Color.GREEN -> rbColorGreen.id
+                Color.BLUE -> rbColorBlue.id
+                else -> -1
+            }
+        )
     }
 
     companion object {

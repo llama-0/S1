@@ -8,7 +8,8 @@ interface EnterNameContract {
     interface View : BaseView {
         fun showMessage(message: String)
         fun showName(name: String)
-        fun showResponseActivity()
+        fun showResponseActivity(color: Int)
+        fun showCheckedRadioButton(color: Int)
     }
 
     interface Presenter : BasePresenter {
