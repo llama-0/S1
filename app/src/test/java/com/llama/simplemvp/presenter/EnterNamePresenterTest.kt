@@ -10,8 +10,6 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Test
 
-import org.junit.Assert.*
-
 class EnterNamePresenterTest {
 
     private val view: EnterNameContract.View = mock()
@@ -22,40 +20,50 @@ class EnterNamePresenterTest {
     @Test
     fun initView() {
         presenter.initView()
+
         verify(view).showName(model.getName())
     }
 
     @Test
     fun `onShowResponseButtonClicked name is empty`() {
-        assertNotNull(model.getName()) // null ...
-        whenever(model.getName().isEmpty()).thenReturn(true)
+        whenever(model.getName()).thenReturn("")
+        whenever(resources.getString(R.string.default_message))
+            .thenReturn("default_message")
+
         presenter.onShowResponseButtonClicked()
+
+        assert(model.getName().isEmpty())
         verify(view).showMessage(resources.getString(R.string.default_message))
     }
 
     @Test
     fun `onShowResponseButtonClicked name is Not empty`() {
-        assertNotNull(model.getName()) // null ...
-        whenever(model.getName().isEmpty()).thenReturn(false)
+        whenever(model.getName()).thenReturn("test")
+
         presenter.onShowResponseButtonClicked()
+
+        assert(model.getName().isNotEmpty())
         verify(view).showResponseActivity(model.getColor())
     }
 
     @Test
     fun `onRadioButtonChecked color RED`() {
         presenter.onRadioButtonChecked(Color.RED)
+
         verify(model).setColor(Color.RED)
     }
 
     @Test
     fun `onRadioButtonChecked color BLUE`() {
         presenter.onRadioButtonChecked(Color.BLUE)
+
         verify(model).setColor(Color.BLUE)
     }
 
     @Test
     fun getRadioGroupResult() {
         presenter.getRadioGroupResult()
+
         verify(model).getColor()
     }
 }
