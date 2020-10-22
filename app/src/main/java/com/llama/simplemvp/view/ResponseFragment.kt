@@ -28,7 +28,7 @@ class ResponseFragment : Fragment(), ResponseContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         initPresenter()
-        val color: Int = arguments!!.getInt(STR_COLOR, Color.GRAY)
+        val color: Int = requireArguments().getInt(STR_COLOR, Color.GRAY)
         tvHello.setBackgroundColor(color)
     }
 

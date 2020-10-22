@@ -84,7 +84,7 @@ class EnterNameFragment : Fragment(), EnterNameContract.View {
 
     override fun showMessage(message: String) {
         Snackbar.make(
-            activityEnterName,
+            fragmentEnterName,
             message,
             Snackbar.LENGTH_LONG
         ).show()
