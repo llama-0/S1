@@ -23,7 +23,7 @@ class EnterNamePresenter(
         if (model.getName().isEmpty()) {
             view.showMessage(resources.getString(R.string.default_message))
         } else {
-            view.showResponseActivity(model.getColor())
+            view.showResponseFragment(model.getColor())
         }
     }
 
