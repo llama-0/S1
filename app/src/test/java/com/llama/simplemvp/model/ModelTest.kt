@@ -3,6 +3,8 @@ package com.llama.simplemvp.model
 import android.content.SharedPreferences
 import android.graphics.Color
 import com.nhaarman.mockitokotlin2.*
+import org.hamcrest.CoreMatchers.`is`
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
@@ -24,7 +26,6 @@ class ModelTest {
         verify(prefsMocked).edit()
         verify(mockEditor).putString(eq(Model.PREF_STR_NAME_KEY), eq("Ana"))
         verify(mockEditor).apply()
-//        verify(prefsMocked).edit().putString(eq(Model.PREF_STR_NAME_KEY), eq("qq")).apply()
     }
 
     @Test
@@ -37,8 +38,21 @@ class ModelTest {
     }
 
     @Test
+    fun `setColor RED`() {
+        model.setColor(Color.RED)
+
+        verify(prefsMocked).edit()
+        verify(mockEditor).putInt(eq(Model.PREF_INT_COLOR_KEY), eq(Color.RED))
+        verify(mockEditor).apply()
+    }
+
+    @Test
     fun `getName Ana`() {
-        assert(false)// todo
+        whenever(prefsMocked.getString(eq(Model.PREF_STR_NAME_KEY), eq(null)))
+            .thenReturn("Ana")
+
+        val name: String = model.getName()
+        Assert.assertThat(name, `is`("Ana"))
     }
 
     @Test
@@ -49,16 +63,11 @@ class ModelTest {
     }
 
     @Test
-    fun `setColor RED`() {
-        model.setColor(Color.RED)
-
-        verify(prefsMocked).edit()
-        verify(mockEditor).putInt(eq(Model.PREF_INT_COLOR_KEY), eq(Color.RED))
-        verify(mockEditor).apply()
-    }
-
-    @Test
     fun `getColor RED`() {
-        assert(false) // todo
+        whenever(prefsMocked.getInt(eq(Model.PREF_INT_COLOR_KEY), eq(0)))
+            .thenReturn(Color.RED)
+
+        val color: Int = model.getColor()
+        Assert.assertThat(color, `is`(Color.RED))
     }
 }
