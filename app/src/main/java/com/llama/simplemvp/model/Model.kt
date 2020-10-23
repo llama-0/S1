@@ -1,7 +1,6 @@
 package com.llama.simplemvp.model
 
 import android.content.SharedPreferences
-import androidx.annotation.VisibleForTesting
 import com.llama.simplemvp.R
 
 class Model(private val prefs: SharedPreferences) {
@@ -25,11 +24,8 @@ class Model(private val prefs: SharedPreferences) {
         prefs.getInt(PREF_INT_COLOR_KEY, R.color.colorCustomGray)
 
     companion object {
-//        @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-        const val PREF_INT_COLOR_KEY = "PREF_INT_COLOR_KEY"
-//        @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-        const val PREF_STR_NAME_KEY = "PREF_STR_NAME_KEY"
-//        @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-        const val STR_DEFAULT_NAME = ""
+        private const val PREF_INT_COLOR_KEY = "PREF_INT_COLOR_KEY"
+        private const val PREF_STR_NAME_KEY = "PREF_STR_NAME_KEY"
+        private const val STR_DEFAULT_NAME = ""
     }
 }

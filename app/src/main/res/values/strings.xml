@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SimpleMVP</string>
+    <string name="app_name">SingleActivityMVP</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="say_hello">Say Hello</string>
     <string name="default_message">Please enter your name</string>

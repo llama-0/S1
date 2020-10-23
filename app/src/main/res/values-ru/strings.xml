@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SimpleMVP</string>
+    <string name="app_name">SingleActivityMVP</string>
     <string name="enter_your_name">Введите своё имя</string>
     <string name="say_hello">Покажи приветствие</string>
     <string name="default_message">Пожалуйста, введите своё имя</string>
