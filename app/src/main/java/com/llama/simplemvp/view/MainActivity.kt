@@ -14,4 +14,9 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.activity_main_frame, EnterNameFragment())
             .commit()
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        supportFragmentManager.popBackStack()
+        return true
+    }
 }
