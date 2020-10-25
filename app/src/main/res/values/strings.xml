@@ -4,7 +4,7 @@
     <string name="say_hello">Say Hello</string>
     <string name="default_message">Please enter your name</string>
     <string name="hello">Hello, %1$s!</string>
-    <string name="color_red" translatable="false">Red</string>
-    <string name="color_green" translatable="false">Green</string>
-    <string name="color_blue" translatable="false">Blue</string>
+    <string name="color_red">Red</string>
+    <string name="color_green">Green</string>
+    <string name="color_blue">Blue</string>
 </resources>

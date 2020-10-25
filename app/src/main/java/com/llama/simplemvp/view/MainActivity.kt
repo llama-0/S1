@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.activity_main_frame, EnterNameFragment())
+            .add(R.id.main_container, EnterNameFragment())
             .commit()
     }
 

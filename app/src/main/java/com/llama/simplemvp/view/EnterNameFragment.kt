@@ -102,7 +102,7 @@ class EnterNameFragment : Fragment(), EnterNameContract.View {
         val fragment: ResponseFragment = ResponseFragment.newInstance(color)
         activity?.supportFragmentManager
             ?.beginTransaction()
-            ?.replace(R.id.activity_main_frame, fragment)
+            ?.replace(R.id.main_container , fragment)
             ?.addToBackStack(null)
             ?.commit()
     }

@@ -5,4 +5,7 @@
     <string name="say_hello">Покажи приветствие</string>
     <string name="default_message">Пожалуйста, введите своё имя</string>
     <string name="hello">Привет, %1$s!</string>
+    <string name="color_red">Красный</string>
+    <string name="color_green">Зелёный</string>
+    <string name="color_blue">Синий</string>
 </resources>
