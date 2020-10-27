@@ -4,6 +4,7 @@ import android.content.res.Resources
 import com.llama.simplemvp.model.Model
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.EnterNameContract
+import com.llama.simplemvp.utils.Navigator
 
 class EnterNamePresenter(
     private val view: EnterNameContract.View,
@@ -23,6 +24,7 @@ class EnterNamePresenter(
         if (model.getName().isEmpty()) {
             view.showMessage(resources.getString(R.string.default_message))
         } else {
+//            Navigator().navigate(withColor = model.getColor())
             view.showResponseFragment(model.getColor())
         }
     }

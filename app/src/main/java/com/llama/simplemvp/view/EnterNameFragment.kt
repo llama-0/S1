@@ -9,13 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.llama.simplemvp.App
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.EnterNameContract
 import com.llama.simplemvp.presenter.EnterNamePresenter
+import com.llama.simplemvp.utils.Navigator
 import com.llama.simplemvp.utils.SimpleTextWatcher
+import com.llama.simplemvp.utils.inTransaction
+import com.llama.simplemvp.utils.replaceFragment
 import kotlinx.android.synthetic.main.fragment_enter_name.*
 
 class EnterNameFragment : Fragment(), EnterNameContract.View {
@@ -48,12 +52,12 @@ class EnterNameFragment : Fragment(), EnterNameContract.View {
     }
 
     private fun initListeners() {
-        rgListener()
-        edListener()
-        btnListener()
+        radioGroupListener()
+        textListener()
+        buttonListener()
     }
 
-    private fun rgListener() {
+    private fun radioGroupListener() {
         rgTextViewBackgroundColor.setOnCheckedChangeListener { radioGroup, radioButtonId ->
             presenter?.onRadioButtonChecked(
                 when (radioGroup.findViewById<RadioButton>(radioButtonId)) {
@@ -66,7 +70,7 @@ class EnterNameFragment : Fragment(), EnterNameContract.View {
         }
     }
 
-    private fun edListener() {
+    private fun textListener() {
         edEnterName.addTextChangedListener(object : SimpleTextWatcher() {
             override fun afterTextChanged(p0: Editable?) {
                 presenter?.onNameChanged(p0.toString())
@@ -81,7 +85,7 @@ class EnterNameFragment : Fragment(), EnterNameContract.View {
         })
     }
 
-    private fun btnListener() {
+    private fun buttonListener() {
         btnShowResponse.setOnClickListener {
             presenter?.onShowResponseButtonClicked()
         }
@@ -100,11 +104,8 @@ class EnterNameFragment : Fragment(), EnterNameContract.View {
 
     override fun showResponseFragment(color: Int) {
         val fragment: ResponseFragment = ResponseFragment.newInstance(color)
-        activity?.supportFragmentManager
-            ?.beginTransaction()
-            ?.replace(R.id.main_container , fragment)
-            ?.addToBackStack(null)
-            ?.commit()
+        replaceFragment(R.id.main_container, fragment)
+//        Navigator().navigate(withColor = color)
     }
 
     override fun showCheckedRadioButton(color: Int) {
