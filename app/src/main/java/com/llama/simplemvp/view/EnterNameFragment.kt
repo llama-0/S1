@@ -43,8 +43,12 @@ class EnterNameFragment : Fragment(), EnterNameContract.View {
     }
 
     private fun initPresenter() {
-        (activity?.application as App).model?.let {
-            presenter = EnterNamePresenter(this, it, resources)
+        activity?.application.let { app ->
+            if (app is App) {
+                app.model?.let { 
+                    presenter = EnterNamePresenter(this, it, resources)
+                }
+            }
         }
         presenter?.initView()
     }
@@ -108,7 +112,11 @@ class EnterNameFragment : Fragment(), EnterNameContract.View {
 
     override fun showResponseFragment(color: Int) {
         val fragment: ResponseFragment = ResponseFragment.newInstance(color)
-        (activity as MainActivity).goToFragment(fragment)
+        activity?.let {
+            if (it is MainActivity) {
+                it.goToFragment(fragment)
+            }
+        }
     }
 
     override fun showCheckedRadioButton(color: Int) {

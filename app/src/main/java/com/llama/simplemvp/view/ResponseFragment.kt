@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.llama.simplemvp.App
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.ResponseContract
+import com.llama.simplemvp.presenter.BasePresenter
 import com.llama.simplemvp.presenter.ResponsePresenter
 import kotlinx.android.synthetic.main.fragment_response.*
 
@@ -38,8 +39,12 @@ class ResponseFragment : Fragment(), ResponseContract.View {
     }
 
     private fun initPresenter() {
-        (activity?.application as App).model?.let {
-            presenter = ResponsePresenter(this, it, resources)
+        activity?.application.let { app ->
+            if (app is App) {
+                app.model?.let {
+                    presenter = ResponsePresenter(this, it, resources)
+                }
+            }
         }
         presenter?.initView()
     }
