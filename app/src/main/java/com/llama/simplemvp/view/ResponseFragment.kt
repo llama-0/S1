@@ -14,20 +14,14 @@ import com.llama.simplemvp.presenter.BasePresenter
 import com.llama.simplemvp.presenter.ResponsePresenter
 import kotlinx.android.synthetic.main.fragment_response.*
 
-class ResponseFragment : Fragment(), ResponseContract.View {
+class ResponseFragment : Fragment(R.layout.fragment_response), ResponseContract.View {
 
     private var presenter: ResponseContract.Presenter? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_response, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -20,19 +20,15 @@ import com.llama.simplemvp.presenter.EnterNamePresenter
 import com.llama.simplemvp.utils.SimpleTextWatcher
 import kotlinx.android.synthetic.main.fragment_enter_name.*
 
-class EnterNameFragment : Fragment(), EnterNameContract.View {
+class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContract.View {
 
     private var presenter: EnterNameContract.Presenter? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_enter_name, container, false)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
-        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

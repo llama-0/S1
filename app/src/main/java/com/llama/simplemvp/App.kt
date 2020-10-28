@@ -10,11 +10,11 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val sharedPreferences: SharedPreferences = getSharedPreferences(PREFERENCES_TAG, 0)
+        val sharedPreferences: SharedPreferences = getSharedPreferences(PREFERENCES, 0)
         model = Model(sharedPreferences)
     }
 
     companion object {
-        private const val PREFERENCES_TAG = "PREFERENCES_TAG"
+        private const val PREFERENCES = "app_preferences"
     }
 }
