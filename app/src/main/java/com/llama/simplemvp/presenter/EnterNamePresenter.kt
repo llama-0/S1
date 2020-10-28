@@ -21,6 +21,7 @@ class EnterNamePresenter(
 
     override fun onShowResponseButtonClicked() {
         if (model.getName().isEmpty()) {
+            view.hideKeyboard()
             view.showMessage(resources.getString(R.string.default_message))
         } else {
             view.showResponseFragment(model.getColor())
