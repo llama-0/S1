@@ -5,9 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.view.KeyEvent
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity

@@ -2,15 +2,12 @@ package com.llama.simplemvp.view
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.llama.simplemvp.App
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.ResponseContract
-import com.llama.simplemvp.presenter.BasePresenter
 import com.llama.simplemvp.presenter.ResponsePresenter
 import kotlinx.android.synthetic.main.fragment_response.*
 
@@ -22,6 +19,7 @@ class ResponseFragment : Fragment(R.layout.fragment_response), ResponseContract.
         super.onCreate(savedInstanceState)
 
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setHasOptionsMenu(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

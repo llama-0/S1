@@ -1,8 +1,8 @@
 package com.llama.simplemvp.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -13,29 +13,19 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), Navigator {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        addFragment(R.id.main_container, EnterNameFragment())
+        addFragment(EnterNameFragment())
     }
-
-//    override fun onSupportNavigateUp(): Boolean {
-//        supportFragmentManager.popBackStack()
-//        return true
-//    }
 
     override fun goToFragment(fragment: Fragment) {
-        replaceFragment(R.id.main_container, fragment)
+        replaceFragment(fragment)
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when(item.itemId) {
-//            android.R.id.home -> navigateBack()
-//        }
-//
-//        return super.onOptionsItemSelected(item)
-//    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            android.R.id.home -> supportFragmentManager.popBackStack()
+        }
 
-    override fun navigateBack() {
-        supportFragmentManager
-            .popBackStack()
+        return super.onOptionsItemSelected(item)
     }
 
     private inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
@@ -44,14 +34,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), Navigator {
         fragmentTransaction.commit()
     }
 
-    private fun addFragment(containerId: Int, fragment: Fragment){
-        supportFragmentManager.inTransaction { add(containerId, fragment) }
+    private fun addFragment(fragment: Fragment){
+        supportFragmentManager.inTransaction { add(R.id.main_container, fragment) }
     }
 
 
-    private fun replaceFragment(containerId: Int, fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.inTransaction{
-            replace(containerId, fragment)
+            replace(R.id.main_container, fragment)
             addToBackStack(null)
         }
     }
