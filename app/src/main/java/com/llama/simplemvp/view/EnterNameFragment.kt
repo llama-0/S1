@@ -1,14 +1,19 @@
 package com.llama.simplemvp.view
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.llama.simplemvp.App
@@ -22,15 +27,10 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
 
     private var presenter: EnterNameContract.Presenter? = null
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         initPresenter()
         initListeners()
@@ -55,12 +55,13 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
 
     private fun setRadioGroupListener() {
         rgTextViewBackgroundColor.setOnCheckedChangeListener { radioGroup, radioButtonId ->
+            val rb = radioGroup.findViewById<RadioButton>(radioButtonId)
+            val rbId = RadioButtonIds.values().single { it.id == rb.id }
             presenter?.onRadioButtonChecked(
-                when (radioGroup.findViewById<RadioButton>(radioButtonId)) {
-                    rbColorRed -> Color.RED
-                    rbColorGreen -> Color.GREEN
-                    rbColorBlue -> Color.BLUE
-                    else -> Color.GRAY
+                when(rbId) {
+                    RadioButtonIds.FIRST -> getColorFromResources(SelectableColors.FIRST.color)
+                    RadioButtonIds.SECOND -> getColorFromResources(SelectableColors.SECOND.color)
+                    RadioButtonIds.THIRD -> getColorFromResources(SelectableColors.THIRD.color)
                 }
             )
         }
@@ -104,7 +105,7 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
         inputMethodManager.hideSoftInputFromWindow(view?.windowToken, InputMethodManager.HIDE_IMPLICIT_ONLY)
     }
 
-    override fun showResponseFragment(color: Int) {
+    override fun showResponseFragmentWithTextViewBackgroundColor(color: Int) {
         val fragment: ResponseFragment = ResponseFragment.newInstance(color)
         activity?.let {
             if (it is MainActivity) {
@@ -114,14 +115,26 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
     }
 
     override fun showCheckedRadioButton(color: Int) {
-        rgTextViewBackgroundColor.check(
-            when (color) {
-                Color.RED -> rbColorRed.id
-                Color.GREEN -> rbColorGreen.id
-                Color.BLUE -> rbColorBlue.id
-                else -> -1
-            }
-        )
+        when (color) {
+            getColorFromResources(SelectableColors.FIRST.color) -> rgTextViewBackgroundColor.check(rbColorFirst.id)
+            getColorFromResources(SelectableColors.SECOND.color) -> rgTextViewBackgroundColor.check(rbColorSecond.id)
+            getColorFromResources(SelectableColors.THIRD.color) -> rgTextViewBackgroundColor.check(rbColorThird.id)
+        }
+    }
+
+    private fun getColorFromResources(color: Int): Int =
+        ResourcesCompat.getColor(resources, color, null)
+
+    enum class SelectableColors(val color: Int) {
+        FIRST(R.color.selectableColorFirst),
+        SECOND(R.color.selectableColorSecond),
+        THIRD(R.color.selectableColorThird)
+    }
+
+    enum class RadioButtonIds(val id: Int) {
+        FIRST(R.id.rbColorFirst),
+        SECOND(R.id.rbColorSecond),
+        THIRD(R.id.rbColorThird)
     }
 
 }

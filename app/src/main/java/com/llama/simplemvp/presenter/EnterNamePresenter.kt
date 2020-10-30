@@ -24,7 +24,7 @@ class EnterNamePresenter(
             view.hideKeyboard()
             view.showMessage(resources.getString(R.string.default_message))
         } else {
-            view.showResponseFragment(model.getColor())
+            view.showResponseFragmentWithTextViewBackgroundColor(model.getColor())
         }
     }
 

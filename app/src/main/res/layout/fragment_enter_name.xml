@@ -33,7 +33,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/btn_margin"
-        style="@style/btnSayHelloStyle"
+        style="@style/btnStyle"
+        android:text="@string/say_hello"
         app:layout_constraintEnd_toEndOf="@+id/tilEnterName"
         app:layout_constraintStart_toStartOf="@+id/tilEnterName"
         app:layout_constraintTop_toBottomOf="@+id/tilEnterName" />
@@ -48,19 +49,19 @@
         app:layout_constraintTop_toTopOf="parent" >
 
         <RadioButton
-            android:id="@+id/rbColorRed"
+            android:id="@+id/rbColorFirst"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/color_red" />
 
         <RadioButton
-            android:id="@+id/rbColorGreen"
+            android:id="@+id/rbColorSecond"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/color_green" />
 
         <RadioButton
-            android:id="@+id/rbColorBlue"
+            android:id="@+id/rbColorThird"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/color_blue" />

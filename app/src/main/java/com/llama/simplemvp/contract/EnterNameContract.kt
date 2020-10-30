@@ -9,7 +9,7 @@ interface EnterNameContract {
         fun showMessage(message: String)
         fun showName(name: String)
         fun hideKeyboard()
-        fun showResponseFragment(color: Int)
+        fun showResponseFragmentWithTextViewBackgroundColor(color: Int)
         fun showCheckedRadioButton(color: Int)
     }
 

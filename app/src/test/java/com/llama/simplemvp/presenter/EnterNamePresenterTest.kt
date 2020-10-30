@@ -43,7 +43,7 @@ class EnterNamePresenterTest {
         presenter.onShowResponseButtonClicked()
 
         assert(model.getName().isNotEmpty())
-        verify(view).showResponseFragment(model.getColor())
+        verify(view).showResponseFragmentWithTextViewBackgroundColor(model.getColor())
     }
 
     @Test

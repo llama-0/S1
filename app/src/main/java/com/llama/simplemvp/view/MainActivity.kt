@@ -1,10 +1,12 @@
 package com.llama.simplemvp.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import androidx.fragment.app.FragmentTransaction
 import com.llama.simplemvp.R
 import com.llama.simplemvp.utils.Navigator
@@ -13,7 +15,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), Navigator {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        addFragment(EnterNameFragment())
+        if (savedInstanceState == null) {
+            addFragment(EnterNameFragment())
+        }
     }
 
     override fun goToFragment(fragment: Fragment) {
@@ -21,10 +25,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), Navigator {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            android.R.id.home -> supportFragmentManager.popBackStack()
+        when (item.itemId) {
+            android.R.id.home -> {
+                supportFragmentManager.popBackStack(FRAGMENT_TAG, POP_BACK_STACK_INCLUSIVE)
+                return true
+            }
         }
-
         return super.onOptionsItemSelected(item)
     }
 
@@ -42,7 +48,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), Navigator {
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.inTransaction{
             replace(R.id.main_container, fragment)
-            addToBackStack(null)
+            addToBackStack(FRAGMENT_TAG)
         }
+    }
+
+    companion object {
+        private const val FRAGMENT_TAG = "EnterNameFragment"
     }
 }

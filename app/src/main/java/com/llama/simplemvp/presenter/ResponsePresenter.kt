@@ -16,5 +16,6 @@ class ResponsePresenter(
 
     override fun initView() {
         view.showMessage(composeMessage())
+        view.showTextViewBackgroundColor()
     }
 }

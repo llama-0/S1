@@ -21,7 +21,7 @@ class Model(private val prefs: SharedPreferences) {
     }
 
     fun getColor(): Int =
-        prefs.getInt(PREF_INT_COLOR_KEY, R.color.colorCustomGray)
+        prefs.getInt(PREF_INT_COLOR_KEY, R.color.colorTextViewBackgroundDefault)
 
     companion object {
         private const val PREF_INT_COLOR_KEY = "PREF_INT_COLOR_KEY"

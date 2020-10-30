@@ -1,6 +1,5 @@
 package com.llama.simplemvp.view
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -15,19 +14,12 @@ class ResponseFragment : Fragment(R.layout.fragment_response), ResponseContract.
 
     private var presenter: ResponseContract.Presenter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        setHasOptionsMenu(true)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         initPresenter()
-        val color: Int = requireArguments().getInt(STR_COLOR, Color.GRAY)
-        tvHello.setBackgroundColor(color)
     }
 
     private fun initPresenter() {
@@ -43,6 +35,11 @@ class ResponseFragment : Fragment(R.layout.fragment_response), ResponseContract.
 
     override fun showMessage(message: String) {
         tvHello.text = message
+    }
+
+    override fun showTextViewBackgroundColor() {
+        val color: Int = requireArguments().getInt(STR_COLOR, R.color.colorTextViewBackgroundDefault)
+        tvHello.setBackgroundColor(color)
     }
 
     companion object {

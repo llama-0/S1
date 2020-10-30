@@ -7,6 +7,7 @@ interface ResponseContract {
 
     interface View : BaseView {
         fun showMessage(message: String)
+        fun showTextViewBackgroundColor()
     }
 
     interface Presenter : BasePresenter {
