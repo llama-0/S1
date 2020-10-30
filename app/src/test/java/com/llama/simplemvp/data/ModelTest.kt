@@ -1,13 +1,14 @@
-package com.llama.simplemvp.model
+package com.llama.simplemvp.data
 
 import android.content.SharedPreferences
-import android.graphics.Color
 import com.llama.simplemvp.R
 import com.nhaarman.mockitokotlin2.*
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import org.mockito.ArgumentMatchers.anyInt
+import org.mockito.ArgumentMatchers.anyString
 
 class ModelTest {
 
@@ -21,7 +22,7 @@ class ModelTest {
     }
 
     @Test
-    fun `setName some name Not empty`() {
+    fun `setName if name saved return this name`() {
         model.setName(STR_TEST_NAME)
 
         verify(prefs).edit()
@@ -30,7 +31,7 @@ class ModelTest {
     }
 
     @Test
-    fun `setName empty string`() {
+    fun `setName if name is empty return empty string`() {
         model.setName("")
 
         verify(prefs).edit()
@@ -39,37 +40,42 @@ class ModelTest {
     }
 
     @Test
-    fun `setColor RED`() {
-        model.setColor(Color.RED)
+    fun `setColor if color saved return this color`() {
+        model.setColor(R.color.selectableColorFirst)
 
         verify(prefs).edit()
-        verify(editor).putInt(eq(PREF_INT_COLOR_KEY), eq(Color.RED))
+        verify(editor).putInt(eq(PREF_INT_COLOR_KEY), eq(R.color.selectableColorFirst))
         verify(editor).apply()
     }
 
-    @Test
-    fun `getName some name Not empty`() {
-        whenever(prefs.getString(eq(PREF_STR_NAME_KEY), eq(null)))
+    @Test // broken with anyString(), but why the test with color anyInt() works then ??
+    fun `getName if some name saved return this name`() {
+        whenever(prefs.getString(eq(PREF_STR_NAME_KEY), anyString()))
             .thenReturn(STR_TEST_NAME)
 
         val name: String = model.getName()
+
         Assert.assertThat(name, `is`(STR_TEST_NAME))
     }
 
     @Test
-    fun `getName empty string`() {
-        model.getName()
+    fun `getName if nothing saved return empty string`() {
+        whenever(prefs.getString(eq(PREF_STR_NAME_KEY), anyString()))
+            .thenReturn("")
 
-        verify(prefs).getString(eq(PREF_STR_NAME_KEY), isNull())
+        val name: String = model.getName()
+
+        Assert.assertThat(name, `is`(""))
     }
 
     @Test
-    fun `getColor RED`() {
-        whenever(prefs.getInt(eq(PREF_INT_COLOR_KEY), eq(R.color.colorCustomGray)))
-            .thenReturn(Color.RED)
+    fun `getColor if color saved return color`() {
+        whenever(prefs.getInt(eq(PREF_INT_COLOR_KEY), anyInt()))
+            .thenReturn(R.color.selectableColorFirst)
 
         val color: Int = model.getColor()
-        Assert.assertThat(color, `is`(Color.RED))
+
+        Assert.assertThat(color, `is`(R.color.selectableColorFirst))
     }
 
     companion object {

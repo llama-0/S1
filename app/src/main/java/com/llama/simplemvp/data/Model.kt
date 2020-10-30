@@ -1,9 +1,14 @@
-package com.llama.simplemvp.model
+package com.llama.simplemvp.data
 
 import android.content.SharedPreferences
+import android.content.res.Resources
+import androidx.core.content.res.ResourcesCompat
 import com.llama.simplemvp.R
 
-class Model(private val prefs: SharedPreferences) {
+class Model(
+    private val prefs: SharedPreferences
+//    private val resources: Resources
+) {
 
     fun setName(name: String) {
         val editor: SharedPreferences.Editor = prefs.edit()
@@ -22,6 +27,9 @@ class Model(private val prefs: SharedPreferences) {
 
     fun getColor(): Int =
         prefs.getInt(PREF_INT_COLOR_KEY, R.color.colorTextViewBackgroundDefault)
+
+//    fun getColorFromResources(): Int =
+//        ResourcesCompat.getColor(resources, getColor(), null)
 
     companion object {
         private const val PREF_INT_COLOR_KEY = "PREF_INT_COLOR_KEY"

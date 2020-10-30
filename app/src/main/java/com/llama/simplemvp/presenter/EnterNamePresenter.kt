@@ -1,9 +1,11 @@
 package com.llama.simplemvp.presenter
 
 import android.content.res.Resources
-import com.llama.simplemvp.model.Model
+import com.llama.simplemvp.data.Model
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.EnterNameContract
+import com.llama.simplemvp.data.SelectableColors
+import kotlinx.android.synthetic.main.fragment_enter_name.*
 
 class EnterNamePresenter(
     private val view: EnterNameContract.View,
@@ -37,8 +39,4 @@ class EnterNamePresenter(
     override fun onRadioButtonChecked(color: Int) {
         model.setColor(color)
     }
-
-    override fun getRadioGroupResult(): Int =
-        model.getColor()
-
 }

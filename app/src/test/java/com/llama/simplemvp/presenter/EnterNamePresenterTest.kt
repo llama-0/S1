@@ -1,10 +1,9 @@
 package com.llama.simplemvp.presenter
 
 import android.content.res.Resources
-import android.graphics.Color
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.EnterNameContract
-import com.llama.simplemvp.model.Model
+import com.llama.simplemvp.data.Model
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -18,14 +17,16 @@ class EnterNamePresenterTest {
     private val presenter: EnterNamePresenter = EnterNamePresenter(view, model, resources)
 
     @Test
-    fun initView() {
+    fun `initView if name present show this name`() {
+        whenever(model.getName()).thenReturn("test name")
+
         presenter.initView()
 
         verify(view).showName(model.getName())
     }
 
     @Test
-    fun `onShowResponseButtonClicked name is empty`() {
+    fun `onShowResponseButtonClicked if name is empty show default message`() {
         whenever(model.getName()).thenReturn("")
         whenever(resources.getString(R.string.default_message))
             .thenReturn("default_message")
@@ -37,8 +38,9 @@ class EnterNamePresenterTest {
     }
 
     @Test
-    fun `onShowResponseButtonClicked name is Not empty`() {
+    fun `onShowResponseButtonClicked if name is present show target fragment with color`() {
         whenever(model.getName()).thenReturn("test")
+        whenever(model.getColor()).thenReturn(R.color.selectableColorFirst)
 
         presenter.onShowResponseButtonClicked()
 
@@ -47,23 +49,9 @@ class EnterNamePresenterTest {
     }
 
     @Test
-    fun `onRadioButtonChecked color RED`() {
-        presenter.onRadioButtonChecked(Color.RED)
+    fun `onRadioButtonChecked if color is selectableColorFirst return this color`() {
+        presenter.onRadioButtonChecked(R.color.selectableColorFirst)
 
-        verify(model).setColor(Color.RED)
-    }
-
-    @Test
-    fun `onRadioButtonChecked color BLUE`() {
-        presenter.onRadioButtonChecked(Color.BLUE)
-
-        verify(model).setColor(Color.BLUE)
-    }
-
-    @Test
-    fun getRadioGroupResult() {
-        presenter.getRadioGroupResult()
-
-        verify(model).getColor()
+        verify(model).setColor(R.color.selectableColorFirst)
     }
 }

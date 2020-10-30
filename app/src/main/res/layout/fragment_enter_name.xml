@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.EnterNameFragment"
-    android:id="@+id/fragmentEnterName">
+    android:id="@+id/constraintLayoutEnterName">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEnterName"
@@ -52,19 +52,19 @@
             android:id="@+id/rbColorFirst"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/color_red" />
+            android:text="@string/selectable_color_first" />
 
         <RadioButton
             android:id="@+id/rbColorSecond"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/color_green" />
+            android:text="@string/selectable_color_second" />
 
         <RadioButton
             android:id="@+id/rbColorThird"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/color_blue" />
+            android:text="@string/selectable_color_third" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

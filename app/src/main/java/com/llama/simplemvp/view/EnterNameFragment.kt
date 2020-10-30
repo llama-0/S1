@@ -1,24 +1,21 @@
 package com.llama.simplemvp.view
 
 import android.content.Context
-import android.content.res.Resources
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.view.KeyEvent
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.llama.simplemvp.App
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.EnterNameContract
+import com.llama.simplemvp.data.RadioButtonIds
+import com.llama.simplemvp.data.SelectableColors
 import com.llama.simplemvp.presenter.EnterNamePresenter
 import com.llama.simplemvp.utils.SimpleTextWatcher
 import kotlinx.android.synthetic.main.fragment_enter_name.*
@@ -91,9 +88,9 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
 
     override fun showMessage(message: String) {
         Snackbar.make(
-            fragmentEnterName,
+            constraintLayoutEnterName,
             message,
-            Snackbar.LENGTH_LONG
+            Snackbar.LENGTH_SHORT
         ).show()
     }
 
@@ -124,17 +121,5 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
 
     private fun getColorFromResources(color: Int): Int =
         ResourcesCompat.getColor(resources, color, null)
-
-    enum class SelectableColors(val color: Int) {
-        FIRST(R.color.selectableColorFirst),
-        SECOND(R.color.selectableColorSecond),
-        THIRD(R.color.selectableColorThird)
-    }
-
-    enum class RadioButtonIds(val id: Int) {
-        FIRST(R.id.rbColorFirst),
-        SECOND(R.id.rbColorSecond),
-        THIRD(R.id.rbColorThird)
-    }
 
 }
