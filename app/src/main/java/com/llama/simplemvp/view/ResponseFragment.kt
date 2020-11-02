@@ -27,10 +27,10 @@ class ResponseFragment : Fragment(R.layout.fragment_response), ResponseContract.
             if (app is App) {
                 app.model?.let {
                     presenter = ResponsePresenter(this, it, resources)
+                    (presenter as ResponsePresenter).initView()
                 }
             }
         }
-        presenter?.initView()
     }
 
     override fun showMessage(message: String) {

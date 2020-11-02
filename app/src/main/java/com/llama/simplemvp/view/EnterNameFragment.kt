@@ -19,6 +19,8 @@ import com.llama.simplemvp.data.SelectableColors
 import com.llama.simplemvp.presenter.EnterNamePresenter
 import com.llama.simplemvp.utils.SimpleTextWatcher
 import kotlinx.android.synthetic.main.fragment_enter_name.*
+import java.util.*
+import kotlin.collections.HashMap
 
 class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContract.View {
 
@@ -38,10 +40,10 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
             if (app is App) {
                 app.model?.let { 
                     presenter = EnterNamePresenter(this, it, resources)
+                    (presenter as EnterNamePresenter).initView()
                 }
             }
         }
-        presenter?.initView()
     }
 
     private fun initListeners() {
@@ -52,15 +54,12 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
 
     private fun setRadioGroupListener() {
         rgTextViewBackgroundColor.setOnCheckedChangeListener { radioGroup, radioButtonId ->
-            val rb = radioGroup.findViewById<RadioButton>(radioButtonId)
-            val rbId = RadioButtonIds.values().single { it.id == rb.id }
-            presenter?.onRadioButtonChecked(
-                when(rbId) {
-                    RadioButtonIds.FIRST -> getColorFromResources(SelectableColors.FIRST.color)
-                    RadioButtonIds.SECOND -> getColorFromResources(SelectableColors.SECOND.color)
-                    RadioButtonIds.THIRD -> getColorFromResources(SelectableColors.THIRD.color)
-                }
-            )
+            val rb: RadioButton = radioGroup.findViewById(radioButtonId)
+            val rbId: RadioButtonIds = RadioButtonIds.values().single { it.id == rb.id }
+            val map: Map<RadioButtonIds, SelectableColors> = EnumMap(RadioButtonIds::class.java)
+            map[rbId]?.color?.let {
+                presenter?.onRadioButtonChecked(it)
+            }
         }
     }
 
