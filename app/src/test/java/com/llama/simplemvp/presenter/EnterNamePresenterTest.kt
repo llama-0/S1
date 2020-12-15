@@ -17,7 +17,7 @@ class EnterNamePresenterTest {
     private val presenter: EnterNamePresenter = EnterNamePresenter(view, model, resources)
 
     @Test
-    fun `initView if name present show this name`() {
+    fun `initView given test name when initView called check test name is present`() {
         whenever(model.getName()).thenReturn("test name")
 
         presenter.initView()
@@ -26,7 +26,7 @@ class EnterNamePresenterTest {
     }
 
     @Test
-    fun `onShowResponseButtonClicked if name is empty show default message`() {
+    fun `onShowResponseButtonClicked given getName() returns empty string when button clicked should show default message`() {
         whenever(model.getName()).thenReturn("")
         whenever(resources.getString(R.string.default_message))
             .thenReturn("default_message")
@@ -38,7 +38,7 @@ class EnterNamePresenterTest {
     }
 
     @Test
-    fun `onShowResponseButtonClicked if name is present show target fragment with color`() {
+    fun `onShowResponseButtonClicked given getName() returns test name when button clicked should show target fragment with color`() {
         whenever(model.getName()).thenReturn("test")
         whenever(model.getColor()).thenReturn(R.color.selectableColorFirst)
 
@@ -49,7 +49,7 @@ class EnterNamePresenterTest {
     }
 
     @Test
-    fun `onRadioButtonChecked if color is selectableColorFirst return this color`() {
+    fun `onRadioButtonChecked given selectableColorFirst when button clicked check color is set`() {
         presenter.onRadioButtonChecked(R.color.selectableColorFirst)
 
         verify(model).setColor(R.color.selectableColorFirst)

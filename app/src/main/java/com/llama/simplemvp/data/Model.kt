@@ -1,8 +1,6 @@
 package com.llama.simplemvp.data
 
 import android.content.SharedPreferences
-import android.content.res.Resources
-import androidx.core.content.res.ResourcesCompat
 import com.llama.simplemvp.R
 
 class Model(private val prefs: SharedPreferences) {
@@ -14,7 +12,7 @@ class Model(private val prefs: SharedPreferences) {
     }
 
     fun getName(): String =
-        prefs.getString(PREF_STR_NAME_KEY, null) ?: STR_DEFAULT_NAME
+        prefs.getString(PREF_STR_NAME_KEY, "") ?: STR_DEFAULT_NAME
 
     fun setColor(color: Int) {
         val editor: SharedPreferences.Editor = prefs.edit()

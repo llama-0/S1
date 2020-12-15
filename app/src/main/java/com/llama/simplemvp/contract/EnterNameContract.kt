@@ -1,11 +1,10 @@
 package com.llama.simplemvp.contract
 
-import com.llama.simplemvp.presenter.BasePresenter
-import com.llama.simplemvp.view.BaseView
+import com.llama.simplemvp.data.RadioButtonIds
 
 interface EnterNameContract {
 
-    interface View : BaseView {
+    interface View {
         fun showMessage(message: String)
         fun showName(name: String)
         fun hideKeyboard()
@@ -13,11 +12,11 @@ interface EnterNameContract {
         fun showCheckedRadioButton(color: Int)
     }
 
-    interface Presenter : BasePresenter {
+    interface Presenter {
         fun initView()
         fun onShowResponseButtonClicked()
         fun onNameChanged(name: String)
-        fun onRadioButtonChecked(color: Int)
+        fun onRadioButtonChecked(rbIds: RadioButtonIds)
     }
 
 }

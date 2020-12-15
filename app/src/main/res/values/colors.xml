@@ -5,7 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorLight">#FAFFF5</color>
     <color name="colorTextViewBackgroundDefault">#575757</color>
-    <color name="selectableColorFirst">#FF0000</color>
-    <color name="selectableColorSecond">#00FF00</color>
-    <color name="selectableColorThird">#0000FF</color>
+    <color name="selectableColorFirst">#d53411</color>
+    <color name="selectableColorSecond">#11d52d</color>
+    <color name="selectableColorThird">#1124d5</color>
 </resources>

@@ -34,18 +34,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), Navigator {
     }
 
     private inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
-        val fragmentTransaction = beginTransaction()
+        val fragmentTransaction: FragmentTransaction = beginTransaction()
         fragmentTransaction.func()
         fragmentTransaction.commit()
     }
 
-    private fun addFragment(fragment: Fragment){
+    private fun addFragment(fragment: Fragment) {
         supportFragmentManager.inTransaction { add(R.id.main_container, fragment) }
     }
 
 
     private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.inTransaction{
+        supportFragmentManager.inTransaction {
             replace(R.id.main_container, fragment)
             addToBackStack(FRAGMENT_TAG)
         }

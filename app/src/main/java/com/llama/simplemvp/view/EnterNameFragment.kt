@@ -8,7 +8,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.llama.simplemvp.App
@@ -18,9 +17,8 @@ import com.llama.simplemvp.data.RadioButtonIds
 import com.llama.simplemvp.data.SelectableColors
 import com.llama.simplemvp.presenter.EnterNamePresenter
 import com.llama.simplemvp.utils.SimpleTextWatcher
+import com.llama.simplemvp.utils.getColorFromResources
 import kotlinx.android.synthetic.main.fragment_enter_name.*
-import java.util.*
-import kotlin.collections.HashMap
 
 class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContract.View {
 
@@ -38,7 +36,7 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
     private fun initPresenter() {
         activity?.application.let { app ->
             if (app is App) {
-                app.model?.let { 
+                app.model?.let {
                     presenter = EnterNamePresenter(this, it, resources)
                     (presenter as EnterNamePresenter).initView()
                 }
@@ -55,11 +53,8 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
     private fun setRadioGroupListener() {
         rgTextViewBackgroundColor.setOnCheckedChangeListener { radioGroup, radioButtonId ->
             val rb: RadioButton = radioGroup.findViewById(radioButtonId)
-            val rbId: RadioButtonIds = RadioButtonIds.values().single { it.id == rb.id }
-            val map: Map<RadioButtonIds, SelectableColors> = EnumMap(RadioButtonIds::class.java)
-            map[rbId]?.color?.let {
-                presenter?.onRadioButtonChecked(it)
-            }
+            val rbIds: RadioButtonIds = RadioButtonIds.values().single { it.id == rb.id }
+            presenter?.onRadioButtonChecked(rbIds)
         }
     }
 
@@ -97,8 +92,12 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
         edEnterName.setText(name)
 
     override fun hideKeyboard() {
-        val inputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view?.windowToken, InputMethodManager.HIDE_IMPLICIT_ONLY)
+        val inputMethodManager: InputMethodManager =
+            activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+            view?.windowToken,
+            InputMethodManager.HIDE_IMPLICIT_ONLY
+        )
     }
 
     override fun showResponseFragmentWithTextViewBackgroundColor(color: Int) {
@@ -112,13 +111,13 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
 
     override fun showCheckedRadioButton(color: Int) {
         when (color) {
-            getColorFromResources(SelectableColors.FIRST.color) -> rgTextViewBackgroundColor.check(rbColorFirst.id)
-            getColorFromResources(SelectableColors.SECOND.color) -> rgTextViewBackgroundColor.check(rbColorSecond.id)
-            getColorFromResources(SelectableColors.THIRD.color) -> rgTextViewBackgroundColor.check(rbColorThird.id)
+            getColorFromResources(resources, SelectableColors.FIRST.color) ->
+                rgTextViewBackgroundColor.check(rbColorFirst.id)
+            getColorFromResources(resources, SelectableColors.SECOND.color) ->
+                rgTextViewBackgroundColor.check(rbColorSecond.id)
+            getColorFromResources(resources, SelectableColors.THIRD.color) ->
+                rgTextViewBackgroundColor.check(rbColorThird.id)
         }
     }
-
-    private fun getColorFromResources(color: Int): Int =
-        ResourcesCompat.getColor(resources, color, null)
 
 }

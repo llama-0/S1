@@ -38,7 +38,8 @@ class ResponseFragment : Fragment(R.layout.fragment_response), ResponseContract.
     }
 
     override fun showTextViewBackgroundColor() {
-        val color: Int = requireArguments().getInt(STR_COLOR, R.color.colorTextViewBackgroundDefault)
+        val color: Int =
+            requireArguments().getInt(STR_COLOR, R.color.colorTextViewBackgroundDefault)
         tvHello.setBackgroundColor(color)
     }
 

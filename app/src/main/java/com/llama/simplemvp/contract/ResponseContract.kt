@@ -1,16 +1,13 @@
 package com.llama.simplemvp.contract
 
-import com.llama.simplemvp.presenter.BasePresenter
-import com.llama.simplemvp.view.BaseView
-
 interface ResponseContract {
 
-    interface View : BaseView {
+    interface View {
         fun showMessage(message: String)
         fun showTextViewBackgroundColor()
     }
 
-    interface Presenter : BasePresenter {
+    interface Presenter {
         fun initView()
     }
 

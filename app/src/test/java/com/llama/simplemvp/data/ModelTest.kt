@@ -2,7 +2,10 @@ package com.llama.simplemvp.data
 
 import android.content.SharedPreferences
 import com.llama.simplemvp.R
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.eq
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert
 import org.junit.Before
@@ -22,7 +25,7 @@ class ModelTest {
     }
 
     @Test
-    fun `setName if name saved return this name`() {
+    fun `setName given test name when saved to shared prefs then verify string added`() {
         model.setName(STR_TEST_NAME)
 
         verify(prefs).edit()
@@ -31,7 +34,7 @@ class ModelTest {
     }
 
     @Test
-    fun `setName if name is empty return empty string`() {
+    fun `setName given empty string as name when saved to shared prefs verify string added`() {
         model.setName("")
 
         verify(prefs).edit()
@@ -40,7 +43,7 @@ class ModelTest {
     }
 
     @Test
-    fun `setColor if color saved return this color`() {
+    fun `setColor given selectableColorFirst as color when color saved verify int added`() {
         model.setColor(R.color.selectableColorFirst)
 
         verify(prefs).edit()
@@ -48,8 +51,8 @@ class ModelTest {
         verify(editor).apply()
     }
 
-    @Test // broken with anyString(), but why the test with color anyInt() works then ??
-    fun `getName if some name saved return this name`() {
+    @Test
+    fun `getName given test name saved when getName called check name matches test name`() {
         whenever(prefs.getString(eq(PREF_STR_NAME_KEY), anyString()))
             .thenReturn(STR_TEST_NAME)
 
@@ -59,7 +62,7 @@ class ModelTest {
     }
 
     @Test
-    fun `getName if nothing saved return empty string`() {
+    fun `getName given empty string saved when getName called check name matches empty string`() {
         whenever(prefs.getString(eq(PREF_STR_NAME_KEY), anyString()))
             .thenReturn("")
 
@@ -69,7 +72,7 @@ class ModelTest {
     }
 
     @Test
-    fun `getColor if color saved return color`() {
+    fun `getColor given selectableColorFirst saved when getColor called check color matches selectableColorFirst`() {
         whenever(prefs.getInt(eq(PREF_INT_COLOR_KEY), anyInt()))
             .thenReturn(R.color.selectableColorFirst)
 

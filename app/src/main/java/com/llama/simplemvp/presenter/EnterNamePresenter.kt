@@ -1,11 +1,12 @@
 package com.llama.simplemvp.presenter
 
 import android.content.res.Resources
-import com.llama.simplemvp.data.Model
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.EnterNameContract
+import com.llama.simplemvp.data.Model
+import com.llama.simplemvp.data.RadioButtonIds
 import com.llama.simplemvp.data.SelectableColors
-import kotlinx.android.synthetic.main.fragment_enter_name.*
+import com.llama.simplemvp.utils.getColorFromResources
 
 class EnterNamePresenter(
     private val view: EnterNameContract.View,
@@ -36,7 +37,14 @@ class EnterNamePresenter(
         }
     }
 
-    override fun onRadioButtonChecked(color: Int) {
+    override fun onRadioButtonChecked(rbIds: RadioButtonIds) {
+        val color: Int = getRadioButtonColor(rbIds)
         model.setColor(color)
+    }
+
+    private fun getRadioButtonColor(rbIds: RadioButtonIds): Int = when (rbIds) {
+        RadioButtonIds.FIRST -> getColorFromResources(resources, SelectableColors.FIRST.color)
+        RadioButtonIds.SECOND -> getColorFromResources(resources, SelectableColors.SECOND.color)
+        RadioButtonIds.THIRD -> getColorFromResources(resources, SelectableColors.THIRD.color)
     }
 }

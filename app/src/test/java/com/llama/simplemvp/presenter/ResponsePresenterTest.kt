@@ -17,7 +17,7 @@ class ResponsePresenterTest {
     private val presenter: ResponsePresenter = ResponsePresenter(view, model, resources)
 
     @Test
-    fun `initView if message is "test name" show "Hello, test name!"`() {
+    fun `initView given "test name" when initView called show "Hello, test name!"`() {
         whenever(model.getName()).thenReturn(TEST_STR)
         whenever(resources.getString(R.string.hello, model.getName()))
             .thenReturn("Hello, $TEST_STR!")
