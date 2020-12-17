@@ -8,5 +8,5 @@
     <string name="selectable_color_first">Красный</string>
     <string name="selectable_color_second">Зелёный</string>
     <string name="selectable_color_third">Синий</string>
-    <string name="instructions">Ввели своё имя, выбери цвет и когда нажмёшь на кнопку, мы тебя поприветствуем!</string>
+    <string name="instructions">Выбери цвет и введи своё имя</string>
 </resources>
