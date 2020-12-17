@@ -5,7 +5,8 @@ import com.llama.simplemvp.view.RadioButtonColorPerId
 interface EnterNameContract {
 
     interface View {
-        fun showMessage(message: String)
+        fun enableShowResponseButton()
+        fun setDefaultButtonState()
         fun showName(name: String)
         fun hideKeyboard()
         fun showResponseFragmentWithTextViewBackgroundColor(color: Int)

@@ -82,12 +82,12 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
         }
     }
 
-    override fun showMessage(message: String) {
-        Snackbar.make(
-            constraintLayoutEnterName,
-            message,
-            Snackbar.LENGTH_SHORT
-        ).show()
+    override fun enableShowResponseButton() {
+        btnShowResponse.isEnabled = true
+    }
+
+    override fun setDefaultButtonState() {
+        btnShowResponse.isEnabled = false
     }
 
     override fun showName(name: String) =
