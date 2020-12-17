@@ -1,4 +1,4 @@
-package com.llama.simplemvp.view
+package com.llama.simplemvp.view.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -13,11 +13,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.llama.simplemvp.App
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.EnterNameContract
-import com.llama.simplemvp.data.RadioButtonIds
-import com.llama.simplemvp.data.SelectableColors
 import com.llama.simplemvp.presenter.EnterNamePresenter
-import com.llama.simplemvp.utils.SimpleTextWatcher
-import com.llama.simplemvp.utils.getColorFromResources
+import com.llama.simplemvp.view.RadioButtonColorPerId
+import com.llama.simplemvp.view.RadioButtonColorPerId.*
+import com.llama.simplemvp.view.SimpleTextWatcher
+import com.llama.simplemvp.view.activity.MainActivity
+import com.llama.simplemvp.view.getColorCompat
 import kotlinx.android.synthetic.main.fragment_enter_name.*
 
 class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContract.View {
@@ -38,7 +39,7 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
             if (app is App) {
                 app.model?.let {
                     presenter = EnterNamePresenter(this, it, resources)
-                    (presenter as EnterNamePresenter).initView()
+                    (presenter as EnterNamePresenter).init()
                 }
             }
         }
@@ -53,7 +54,8 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
     private fun setRadioGroupListener() {
         rgTextViewBackgroundColor.setOnCheckedChangeListener { radioGroup, radioButtonId ->
             val rb: RadioButton = radioGroup.findViewById(radioButtonId)
-            val rbIds: RadioButtonIds = RadioButtonIds.values().single { it.id == rb.id }
+            val rbIds: RadioButtonColorPerId =
+                values().single { it.id == rb.id }
             presenter?.onRadioButtonChecked(rbIds)
         }
     }
@@ -111,11 +113,11 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
 
     override fun showCheckedRadioButton(color: Int) {
         when (color) {
-            getColorFromResources(resources, SelectableColors.FIRST.color) ->
+            resources.getColorCompat(FIRST.color) ->
                 rgTextViewBackgroundColor.check(rbColorFirst.id)
-            getColorFromResources(resources, SelectableColors.SECOND.color) ->
+            resources.getColorCompat(SECOND.color) ->
                 rgTextViewBackgroundColor.check(rbColorSecond.id)
-            getColorFromResources(resources, SelectableColors.THIRD.color) ->
+            resources.getColorCompat(THIRD.color) ->
                 rgTextViewBackgroundColor.check(rbColorThird.id)
         }
     }

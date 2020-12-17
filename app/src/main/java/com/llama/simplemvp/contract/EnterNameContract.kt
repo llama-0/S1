@@ -1,6 +1,6 @@
 package com.llama.simplemvp.contract
 
-import com.llama.simplemvp.data.RadioButtonIds
+import com.llama.simplemvp.view.RadioButtonColorPerId
 
 interface EnterNameContract {
 
@@ -13,10 +13,10 @@ interface EnterNameContract {
     }
 
     interface Presenter {
-        fun initView()
+        fun init()
         fun onShowResponseButtonClicked()
         fun onNameChanged(name: String)
-        fun onRadioButtonChecked(rbIds: RadioButtonIds)
+        fun onRadioButtonChecked(rbIds: RadioButtonColorPerId)
     }
 
 }

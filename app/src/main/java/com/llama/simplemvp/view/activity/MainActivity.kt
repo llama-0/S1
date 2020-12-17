@@ -1,4 +1,4 @@
-package com.llama.simplemvp.view
+package com.llama.simplemvp.view.activity
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -8,7 +8,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import androidx.fragment.app.FragmentTransaction
 import com.llama.simplemvp.R
-import com.llama.simplemvp.utils.Navigator
+import com.llama.simplemvp.view.navigation.Navigator
+import com.llama.simplemvp.view.fragment.EnterNameFragment
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), Navigator {
     override fun onCreate(savedInstanceState: Bundle?) {

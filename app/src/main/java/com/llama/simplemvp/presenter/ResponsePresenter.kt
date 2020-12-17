@@ -3,7 +3,7 @@ package com.llama.simplemvp.presenter
 import android.content.res.Resources
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.ResponseContract
-import com.llama.simplemvp.data.Model
+import com.llama.simplemvp.model.Model
 
 class ResponsePresenter(
     private val view: ResponseContract.View,

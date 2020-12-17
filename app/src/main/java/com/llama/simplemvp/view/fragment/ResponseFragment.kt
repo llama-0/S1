@@ -1,4 +1,4 @@
-package com.llama.simplemvp.view
+package com.llama.simplemvp.view.fragment
 
 import android.os.Bundle
 import android.view.View

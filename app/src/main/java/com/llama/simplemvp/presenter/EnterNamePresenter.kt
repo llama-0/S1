@@ -3,10 +3,11 @@ package com.llama.simplemvp.presenter
 import android.content.res.Resources
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.EnterNameContract
-import com.llama.simplemvp.data.Model
-import com.llama.simplemvp.data.RadioButtonIds
-import com.llama.simplemvp.data.SelectableColors
-import com.llama.simplemvp.utils.getColorFromResources
+import com.llama.simplemvp.model.Model
+import com.llama.simplemvp.view.getColorCompat
+import com.llama.simplemvp.view.RadioButtonColorPerId
+import com.llama.simplemvp.view.RadioButtonColorPerId.*
+
 
 class EnterNamePresenter(
     private val view: EnterNameContract.View,
@@ -17,7 +18,7 @@ class EnterNamePresenter(
     private fun saveName(name: String) =
         model.setName(name)
 
-    override fun initView() {
+    override fun init() {
         view.showName(model.getName())
         view.showCheckedRadioButton(model.getColor())
     }
@@ -37,14 +38,14 @@ class EnterNamePresenter(
         }
     }
 
-    override fun onRadioButtonChecked(rbIds: RadioButtonIds) {
+    override fun onRadioButtonChecked(rbIds: RadioButtonColorPerId) {
         val color: Int = getRadioButtonColor(rbIds)
         model.setColor(color)
     }
 
-    private fun getRadioButtonColor(rbIds: RadioButtonIds): Int = when (rbIds) {
-        RadioButtonIds.FIRST -> getColorFromResources(resources, SelectableColors.FIRST.color)
-        RadioButtonIds.SECOND -> getColorFromResources(resources, SelectableColors.SECOND.color)
-        RadioButtonIds.THIRD -> getColorFromResources(resources, SelectableColors.THIRD.color)
+    private fun getRadioButtonColor(rbIds: RadioButtonColorPerId): Int = when (rbIds) {
+        FIRST -> resources.getColorCompat(FIRST.color)
+        SECOND -> resources.getColorCompat(SECOND.color)
+        THIRD -> resources.getColorCompat(THIRD.color)
     }
 }

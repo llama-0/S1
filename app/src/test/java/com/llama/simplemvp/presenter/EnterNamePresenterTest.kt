@@ -3,7 +3,7 @@ package com.llama.simplemvp.presenter
 import android.content.res.Resources
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.EnterNameContract
-import com.llama.simplemvp.data.Model
+import com.llama.simplemvp.model.Model
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever

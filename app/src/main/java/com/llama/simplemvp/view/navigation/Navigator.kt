@@ -1,4 +1,4 @@
-package com.llama.simplemvp.utils
+package com.llama.simplemvp.view.navigation
 
 import androidx.fragment.app.Fragment
 
