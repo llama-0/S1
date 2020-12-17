@@ -16,6 +16,7 @@
         app:endIconMode="clear_text"
         android:layout_marginStart="@dimen/ed_margin_start"
         android:layout_marginEnd="@dimen/ed_margin_end"
+        app:hintAnimationEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

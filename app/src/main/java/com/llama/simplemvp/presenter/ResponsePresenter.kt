@@ -14,8 +14,8 @@ class ResponsePresenter(
     private fun composeMessage(): String =
         resources.getString(R.string.hello, model.getName())
 
-    override fun initView() {
+    override fun init(color: Int) {
         view.showMessage(composeMessage())
-        view.showTextViewBackgroundColor()
+        view.showTextViewBackgroundColor(color)
     }
 }

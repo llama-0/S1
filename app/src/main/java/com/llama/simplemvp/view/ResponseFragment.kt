@@ -26,8 +26,10 @@ class ResponseFragment : Fragment(R.layout.fragment_response), ResponseContract.
         activity?.application.let { app ->
             if (app is App) {
                 app.model?.let {
+                    val color: Int =
+                        requireArguments().getInt(ARG_INT_COLOR, R.color.colorTextViewBackgroundDefault)
                     presenter = ResponsePresenter(this, it, resources)
-                    (presenter as ResponsePresenter).initView()
+                    (presenter as ResponsePresenter).init(color)
                 }
             }
         }
@@ -37,18 +39,16 @@ class ResponseFragment : Fragment(R.layout.fragment_response), ResponseContract.
         tvHello.text = message
     }
 
-    override fun showTextViewBackgroundColor() {
-        val color: Int =
-            requireArguments().getInt(STR_COLOR, R.color.colorTextViewBackgroundDefault)
+    override fun showTextViewBackgroundColor(color: Int) {
         tvHello.setBackgroundColor(color)
     }
 
     companion object {
-        private const val STR_COLOR = "STR_COLOR"
+        private const val ARG_INT_COLOR = "ARG_INT_COLOR"
 
         fun newInstance(color: Int): ResponseFragment {
             val args = Bundle()
-            args.putInt(STR_COLOR, color)
+            args.putInt(ARG_INT_COLOR, color)
 
             val fragment = ResponseFragment()
             fragment.arguments = args

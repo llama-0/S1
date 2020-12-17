@@ -4,11 +4,11 @@ interface ResponseContract {
 
     interface View {
         fun showMessage(message: String)
-        fun showTextViewBackgroundColor()
+        fun showTextViewBackgroundColor(color: Int)
     }
 
     interface Presenter {
-        fun initView()
+        fun init(color: Int)
     }
 
 }
