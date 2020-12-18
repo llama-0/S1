@@ -1,6 +1,7 @@
 package com.llama.simplemvp.contract
 
-import com.llama.simplemvp.view.RadioButtonColorPerId
+import androidx.annotation.ColorRes
+import com.llama.simplemvp.view.model.RadioButtonColorPerId
 
 interface EnterNameContract {
 
@@ -16,7 +17,7 @@ interface EnterNameContract {
         fun init()
         fun onShowResponseButtonClicked()
         fun onNameChanged(name: String)
-        fun onRadioButtonChecked(rbIds: RadioButtonColorPerId)
+        fun onRadioButtonChecked(rbColorPerId: RadioButtonColorPerId)
     }
 
 }

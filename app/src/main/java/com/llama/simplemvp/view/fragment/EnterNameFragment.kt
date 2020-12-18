@@ -7,6 +7,8 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.RadioButton
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
@@ -14,8 +16,8 @@ import com.llama.simplemvp.App
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.EnterNameContract
 import com.llama.simplemvp.presenter.EnterNamePresenter
-import com.llama.simplemvp.view.RadioButtonColorPerId
-import com.llama.simplemvp.view.RadioButtonColorPerId.*
+import com.llama.simplemvp.view.model.RadioButtonColorPerId
+import com.llama.simplemvp.view.model.RadioButtonColorPerId.*
 import com.llama.simplemvp.view.SimpleTextWatcher
 import com.llama.simplemvp.view.activity.MainActivity
 import com.llama.simplemvp.view.getColorCompat
@@ -54,9 +56,9 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
     private fun setRadioGroupListener() {
         rgTextViewBackgroundColor.setOnCheckedChangeListener { radioGroup, radioButtonId ->
             val rb: RadioButton = radioGroup.findViewById(radioButtonId)
-            val rbIds: RadioButtonColorPerId =
-                values().single { it.id == rb.id }
-            presenter?.onRadioButtonChecked(rbIds)
+            val rbColorPerId: RadioButtonColorPerId? =
+                values().firstOrNull { it.id == rb.id }
+            presenter?.onRadioButtonChecked(rbColorPerId ?: return@setOnCheckedChangeListener)
         }
     }
 
@@ -119,6 +121,13 @@ class EnterNameFragment : Fragment(R.layout.fragment_enter_name), EnterNameContr
                 rgTextViewBackgroundColor.check(rbColorSecond.id)
             resources.getColorCompat(THIRD.color) ->
                 rgTextViewBackgroundColor.check(rbColorThird.id)
+        }
+    }
+
+    companion object {
+
+        fun newInstance(): EnterNameFragment {
+            return EnterNameFragment()
         }
     }
 

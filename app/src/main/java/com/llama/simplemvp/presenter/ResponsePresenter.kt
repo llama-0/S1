@@ -1,6 +1,7 @@
 package com.llama.simplemvp.presenter
 
 import android.content.res.Resources
+import androidx.annotation.ColorInt
 import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.ResponseContract
 import com.llama.simplemvp.model.Model
@@ -14,7 +15,7 @@ class ResponsePresenter(
     private fun composeMessage(): String =
         resources.getString(R.string.hello, model.getName())
 
-    override fun init(color: Int) {
+    override fun init(@ColorInt color: Int) {
         view.showMessage(composeMessage())
         view.showTextViewBackgroundColor(color)
     }

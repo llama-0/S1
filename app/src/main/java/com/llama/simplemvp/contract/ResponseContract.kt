@@ -1,14 +1,16 @@
 package com.llama.simplemvp.contract
 
+import androidx.annotation.ColorInt
+
 interface ResponseContract {
 
     interface View {
         fun showMessage(message: String)
-        fun showTextViewBackgroundColor(color: Int)
+        fun showTextViewBackgroundColor(@ColorInt color: Int)
     }
 
     interface Presenter {
-        fun init(color: Int)
+        fun init(@ColorInt color: Int)
     }
 
 }

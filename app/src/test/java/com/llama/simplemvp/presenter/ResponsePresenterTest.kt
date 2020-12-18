@@ -17,14 +17,20 @@ class ResponsePresenterTest {
     private val presenter: ResponsePresenter = ResponsePresenter(view, model, resources)
 
     @Test
-    fun `initView given "test name" when initView called show "Hello, test name!"`() {
+    fun `init given name and color when initView called show Hello, test name!`() {
+        val expectedMessage = "Hello, $TEST_STR!"
+        val expectedColor: Int = R.color.selectableColorFirst
+
         whenever(model.getName()).thenReturn(TEST_STR)
         whenever(resources.getString(R.string.hello, model.getName()))
-            .thenReturn("Hello, $TEST_STR!")
+            .thenReturn(expectedMessage)
 
-        presenter.initView()
+        whenever(model.getColor()).thenReturn(expectedColor)
 
-        verify(view).showMessage("Hello, $TEST_STR!")
+        presenter.init(expectedColor)
+
+        verify(view).showMessage(expectedMessage)
+        verify(view).showTextViewBackgroundColor(expectedColor)
     }
 
     companion object {

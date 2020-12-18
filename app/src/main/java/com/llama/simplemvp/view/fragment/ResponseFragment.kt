@@ -2,6 +2,7 @@ package com.llama.simplemvp.view.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.llama.simplemvp.App
@@ -27,7 +28,10 @@ class ResponseFragment : Fragment(R.layout.fragment_response), ResponseContract.
             if (app is App) {
                 app.model?.let {
                     val color: Int =
-                        requireArguments().getInt(ARG_INT_COLOR, R.color.colorTextViewBackgroundDefault)
+                        requireArguments().getInt(
+                            ARG_INT_COLOR,
+                            R.color.colorTextViewBackgroundDefault
+                        )
                     presenter = ResponsePresenter(this, it, resources)
                     (presenter as ResponsePresenter).init(color)
                 }
@@ -39,7 +43,7 @@ class ResponseFragment : Fragment(R.layout.fragment_response), ResponseContract.
         tvHello.text = message
     }
 
-    override fun showTextViewBackgroundColor(color: Int) {
+    override fun showTextViewBackgroundColor(@ColorInt color: Int) {
         tvHello.setBackgroundColor(color)
     }
 

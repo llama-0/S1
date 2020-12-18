@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), Navigator {
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState == null) {
-            addFragment(EnterNameFragment())
+            addFragment(EnterNameFragment.newInstance())
         }
     }
 
@@ -41,7 +41,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), Navigator {
     }
 
     private fun addFragment(fragment: Fragment) {
-        supportFragmentManager.inTransaction { add(R.id.main_container, fragment) }
+        supportFragmentManager.inTransaction {
+            add(R.id.main_container, fragment)
+        }
     }
 
 

@@ -5,8 +5,8 @@ import com.llama.simplemvp.R
 import com.llama.simplemvp.contract.EnterNameContract
 import com.llama.simplemvp.model.Model
 import com.llama.simplemvp.view.getColorCompat
-import com.llama.simplemvp.view.RadioButtonColorPerId
-import com.llama.simplemvp.view.RadioButtonColorPerId.*
+import com.llama.simplemvp.view.model.RadioButtonColorPerId
+import com.llama.simplemvp.view.model.RadioButtonColorPerId.*
 
 
 class EnterNamePresenter(
@@ -38,14 +38,15 @@ class EnterNamePresenter(
         }
     }
 
-    override fun onRadioButtonChecked(rbIds: RadioButtonColorPerId) {
-        val color: Int = getRadioButtonColor(rbIds)
+    override fun onRadioButtonChecked(rbColorPerId: RadioButtonColorPerId) {
+        val color: Int = getRadioButtonColor(rbColorPerId)
         model.setColor(color)
     }
 
-    private fun getRadioButtonColor(rbIds: RadioButtonColorPerId): Int = when (rbIds) {
-        FIRST -> resources.getColorCompat(FIRST.color)
-        SECOND -> resources.getColorCompat(SECOND.color)
-        THIRD -> resources.getColorCompat(THIRD.color)
+    private fun getRadioButtonColor(rbColorPerId: RadioButtonColorPerId): Int =
+        when (rbColorPerId) {
+            FIRST -> resources.getColorCompat(FIRST.color)
+            SECOND -> resources.getColorCompat(SECOND.color)
+            THIRD -> resources.getColorCompat(THIRD.color)
     }
 }

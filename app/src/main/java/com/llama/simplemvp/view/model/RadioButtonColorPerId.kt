@@ -1,4 +1,4 @@
-package com.llama.simplemvp.view
+package com.llama.simplemvp.view.model
 
 import androidx.annotation.ColorRes
 import androidx.annotation.IdRes
